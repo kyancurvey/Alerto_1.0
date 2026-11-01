@@ -1,5 +1,8 @@
 {
-  "gear": { "label": "Mga gamit", "title": "Mga gamit" },
+  "gear": {
+    "label": "Mga gamit",
+    "title": "Mga gamit"
+  },
   "scenarios": {
     "title": "Mga sitwasyon",
     "drowsy1": "Antok: Antas 1, paalala",
@@ -13,11 +16,30 @@
     "faultCamera": "Problema sa unit: camera",
     "faultBattery": "Problema sa unit: mahina ang baterya"
   },
-  "timing": { "title": "Bilis", "quick": "Mabilis", "realistic": "Totoong bilis" },
-  "account": { "title": "Palitan ang account", "driver": "Driver", "family": "Kapamilya", "admin": "Admin" },
-  "data": { "title": "Datos", "reset": "I-reset ang datos", "resetConfirm": "Pindutin ulit para i-reset" },
+  "timing": {
+    "title": "Bilis",
+    "quick": "Mabilis",
+    "realistic": "Totoong bilis"
+  },
+  "account": {
+    "title": "Palitan ang account",
+    "driver": "Driver",
+    "family": "Kapamilya",
+    "admin": "Admin"
+  },
+  "data": {
+    "title": "Datos",
+    "reset": "I-reset ang datos",
+    "resetConfirm": "Pindutin ulit para i-reset"
+  },
   "toast": {
     "started": "Nagsimula: {{name}}",
     "finished": "Tapos na: {{name}}. Bilang ng event sa kasaysayan: {{count}}"
+  },
+  "fill": {
+    "title": "Punan",
+    "account": "Punan ang account",
+    "newDriver": "Punan ang detalye ng bagong driver",
+    "inviteCode": "Punan ang code ng imbitasyon"
   }
 }

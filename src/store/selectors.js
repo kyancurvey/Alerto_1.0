@@ -1,6 +1,24 @@
 // Read helpers. Screens use these instead of digging through the state.
 export const selectAccount = (state) => state.accounts.find((account) => account.id === state.session.accountId) ?? null
 export const selectRole = (state) => selectAccount(state)?.role ?? null
+export const selectAccountByEmail = (state, email) => {
+  const wanted = String(email ?? '').trim().toLowerCase()
+  return state.accounts.find((account) => account.email.toLowerCase() === wanted) ?? null
+}
+
+// Vehicles the account can see: a driver's own, the linked drivers' for a family member, all for an admin.
+export function selectVisibleVehicles(state, account) {
+  if (!account) return []
+  if (account.role === 'admin') return state.vehicles
+  if (account.role === 'driver') return state.vehicles.filter((vehicle) => vehicle.ownerId === account.id)
+  const driverIds = state.familyLinks.filter((link) => link.memberId === account.id && link.status === 'accepted').map((link) => link.driverId)
+  return state.vehicles.filter((vehicle) => driverIds.includes(vehicle.ownerId))
+}
+
+export const selectInviteByCode = (state, code) => {
+  const wanted = String(code ?? '').trim().toUpperCase()
+  return state.familyLinks.find((link) => link.code === wanted) ?? null
+}
 
 export const selectVehicle = (state, vehicleId) => state.vehicles.find((vehicle) => vehicle.id === vehicleId) ?? null
 export const selectActiveVehicle = (state) => selectVehicle(state, state.activeVehicleId)

@@ -4,14 +4,16 @@ import { ChevronRight } from 'lucide-react'
 import Page from '../../components/layout/Page'
 import { Card, Select, useToast } from '../../components/ui'
 import { languages } from '../../i18n'
-import { moreItems } from '../../routes'
+import { moreItemsFor } from '../../routes'
 import { useStore } from '../../store/StoreProvider'
+import useSession from '../../store/useSession'
 import './more.css'
 
 export default function MorePage() {
   const { t, i18n } = useTranslation()
   const toast = useToast()
   const { state, actions } = useStore()
+  const { role } = useSession()
 
   const onLanguageChange = (event) => {
     actions.setLanguage(event.target.value)
@@ -22,7 +24,7 @@ export default function MorePage() {
     <Page title={t('nav.more')}>
       <Card flush>
         <ul className="more__list">
-          {moreItems.map(({ to, key, icon: Icon }) => (
+          {moreItemsFor(role).map(({ to, key, icon: Icon }) => (
             <li key={to}>
               <Link to={to} className="more__item">
                 <Icon size={24} aria-hidden="true" />

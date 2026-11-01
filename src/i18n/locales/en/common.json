@@ -1,5 +1,7 @@
 {
-  "app": { "name": "Alerto" },
+  "app": {
+    "name": "Alerto"
+  },
   "nav": {
     "home": "Home",
     "events": "Events",
@@ -21,5 +23,13 @@
     "en": "English",
     "fil": "Filipino",
     "changed": "Language updated"
+  },
+  "account": {
+    "signOut": "Sign out"
+  },
+  "role": {
+    "driver": "Driver",
+    "family": "Family member",
+    "admin": "Admin"
   }
 }

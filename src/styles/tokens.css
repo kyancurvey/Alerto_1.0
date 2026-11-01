@@ -51,6 +51,8 @@
   --gear-size: 44px;
   --gear-gap: 12px;
   --content-max: 960px;
+  --form-max: 440px;
+  --auth-panel-w: 420px;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-right: env(safe-area-inset-right, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);

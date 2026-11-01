@@ -1,1 +1,5 @@
-{}
+{
+  "title": "Set up your vehicle",
+  "welcome": "Welcome, {{name}}",
+  "detail": "Next, add your vehicle and claim your Alerto unit."
+}

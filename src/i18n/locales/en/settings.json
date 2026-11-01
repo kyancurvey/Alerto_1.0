@@ -1,5 +1,8 @@
 {
   "title": "Settings",
-  "purpose": "Account and app options",
-  "detail": "Profile, language, notifications and privacy."
+  "profile": {
+    "title": "Profile",
+    "save": "Save changes",
+    "saved": "Profile updated"
+  }
 }

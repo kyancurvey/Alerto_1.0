@@ -1,5 +1,8 @@
 {
   "title": "Mga Setting",
-  "purpose": "Account at mga opsyon ng app",
-  "detail": "Profile, wika, mga abiso, at privacy."
+  "profile": {
+    "title": "Profile",
+    "save": "I-save ang mga pagbabago",
+    "saved": "Na-update na ang profile"
+  }
 }

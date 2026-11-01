@@ -6,8 +6,24 @@ export function reducer(state, action) {
     case 'reset':
       return action.state
 
+    // The language choice is stored on the signed-in account too.
     case 'app/language':
-      return { ...state, language: action.language }
+      return {
+        ...state,
+        language: action.language,
+        accounts: state.session.accountId ? patchById(state.accounts, state.session.accountId, (account) => ({ ...account, language: action.language })) : state.accounts,
+      }
+    case 'session/start': {
+      const account = state.accounts.find((item) => item.id === action.accountId)
+      return account ? { ...state, session: { accountId: account.id }, language: account.language } : state
+    }
+    case 'session/end':
+      return { ...state, session: { accountId: null } }
+    case 'account/add':
+      return { ...state, accounts: [...state.accounts, action.account] }
+    case 'account/patch':
+      return { ...state, accounts: patchById(state.accounts, action.id, (account) => ({ ...account, ...action.patch })) }
+
     case 'app/timing':
       return { ...state, timing: action.timing }
     case 'app/activeVehicle':

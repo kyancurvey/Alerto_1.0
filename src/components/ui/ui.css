@@ -105,6 +105,25 @@
 .field__control:hover { border-color: var(--ink-600); }
 .field__control:focus-visible { border-color: var(--blue-500); outline-offset: 0; }
 .field__control[aria-invalid='true'] { border-color: var(--red-600); }
+.field__box { position: relative; }
+.field__control--trailing { padding-inline-end: calc(var(--touch) + var(--space-2)); }
+.field__trailing {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: var(--space-1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch);
+  height: var(--touch);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--ink-600);
+  transform: translateY(-50%);
+}
+.field__trailing:hover { background: var(--navy-100); color: var(--navy-900); }
 .field__hint { color: var(--ink-600); font-size: var(--text-sm); }
 .field__error { color: var(--red-600); font-size: var(--text-sm); font-weight: var(--weight-medium); }
 

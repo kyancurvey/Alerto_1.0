@@ -1,5 +1,8 @@
 {
-  "gear": { "label": "Tools", "title": "Tools" },
+  "gear": {
+    "label": "Tools",
+    "title": "Tools"
+  },
   "scenarios": {
     "title": "Scenarios",
     "drowsy1": "Drowsiness: Level 1 caution",
@@ -13,11 +16,30 @@
     "faultCamera": "Unit fault: camera",
     "faultBattery": "Unit fault: low battery"
   },
-  "timing": { "title": "Timing", "quick": "Quick", "realistic": "Realistic" },
-  "account": { "title": "Switch account", "driver": "Driver", "family": "Family member", "admin": "Admin" },
-  "data": { "title": "Data", "reset": "Reset data", "resetConfirm": "Tap again to reset" },
+  "timing": {
+    "title": "Timing",
+    "quick": "Quick",
+    "realistic": "Realistic"
+  },
+  "account": {
+    "title": "Switch account",
+    "driver": "Driver",
+    "family": "Family member",
+    "admin": "Admin"
+  },
+  "data": {
+    "title": "Data",
+    "reset": "Reset data",
+    "resetConfirm": "Tap again to reset"
+  },
   "toast": {
     "started": "{{name}} started",
     "finished": "{{name}} finished. Events in history: {{count}}"
+  },
+  "fill": {
+    "title": "Fill in",
+    "account": "Fill account",
+    "newDriver": "Fill new driver details",
+    "inviteCode": "Fill invite code"
   }
 }

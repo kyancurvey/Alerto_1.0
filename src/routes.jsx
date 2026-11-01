@@ -1,4 +1,5 @@
 import { Bus, CalendarClock, ChartColumn, EllipsisVertical, House, Map as MapIcon, Settings, ShieldCheck, Users } from 'lucide-react'
+import { navFor } from './lib/permissions'
 
 // Single source for navigation. `key` is the label under common:nav.*.
 export const nav = {
@@ -13,10 +14,13 @@ export const nav = {
   admin: { to: '/admin', key: 'admin', icon: ShieldCheck },
 }
 
-// Phone bottom bar. More stays highlighted on the pages it holds.
-export const tabs = [nav.home, nav.events, nav.map, nav.vehicles, nav.more]
-export const moreItems = [nav.people, nav.reports, nav.settings]
-export const moreSection = moreItems.map((item) => item.to)
+// Pages outside the tab navigation.
+export const paths = { signin: '/signin', signup: '/signup', join: '/join', setup: '/setup' }
+export const pathOf = (key) => nav[key]?.to ?? paths[key]
+export const routeKeyOf = (pathname) => pathname.split('/')[1] ?? ''
 
-// Large-screen side navigation.
-export const sideItems = [nav.home, nav.events, nav.map, nav.vehicles, nav.people, nav.reports, nav.settings]
+// Which items each role sees comes from lib/permissions.js.
+const itemsOf = (keys) => keys.map((key) => nav[key])
+export const tabsFor = (role) => itemsOf(navFor(role).tabs)
+export const moreItemsFor = (role) => itemsOf(navFor(role).more)
+export const sideItemsFor = (role) => itemsOf(navFor(role).side)
