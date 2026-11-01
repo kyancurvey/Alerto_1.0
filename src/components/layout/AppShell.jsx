@@ -3,10 +3,12 @@ import { Outlet, useLocation } from 'react-router-dom'
 import TopBar from './TopBar'
 import BottomTabs from './BottomTabs'
 import SideNav from './SideNav'
+import useAppPresenterActions from '../presenter/useAppPresenterActions'
 import './layout.css'
 
 export default function AppShell() {
   const { pathname } = useLocation()
+  useAppPresenterActions()
 
   useEffect(() => {
     window.scrollTo(0, 0)

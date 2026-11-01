@@ -294,7 +294,8 @@
 .toasts {
   position: fixed;
   inset-inline: 0;
-  bottom: calc(var(--tabbar-h) + var(--safe-bottom) + var(--space-3));
+  /* Phones: above the gear button, which floats just above the tab bar at the right edge. */
+  bottom: calc(var(--tabbar-h) + var(--safe-bottom) + var(--gear-gap) + var(--gear-size) + var(--space-2));
   z-index: 110;
   display: flex;
   flex-direction: column;

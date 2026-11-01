@@ -48,6 +48,8 @@
   --topbar-h: 56px;
   --tabbar-h: 64px;
   --sidenav-w: 264px;
+  --gear-size: 44px;
+  --gear-gap: 12px;
   --content-max: 960px;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-right: env(safe-area-inset-right, 0px);

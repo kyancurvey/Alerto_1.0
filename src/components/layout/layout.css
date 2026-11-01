@@ -66,7 +66,7 @@
   padding:
     var(--space-5)
     calc(var(--space-4) + var(--safe-right))
-    calc(var(--tabbar-h) + var(--safe-bottom) + var(--space-5))
+    calc(var(--tabbar-h) + var(--safe-bottom) + var(--gear-gap) + var(--gear-size) + var(--space-4))
     calc(var(--space-4) + var(--safe-left));
 }
 .page { display: flex; flex-direction: column; gap: var(--space-4); max-width: var(--content-max); margin: 0 auto; }

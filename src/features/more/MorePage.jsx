@@ -5,15 +5,17 @@ import Page from '../../components/layout/Page'
 import { Card, Select, useToast } from '../../components/ui'
 import { languages } from '../../i18n'
 import { moreItems } from '../../routes'
+import { useStore } from '../../store/StoreProvider'
 import './more.css'
 
 export default function MorePage() {
   const { t, i18n } = useTranslation()
   const toast = useToast()
+  const { state, actions } = useStore()
 
-  const onLanguageChange = async (event) => {
-    await i18n.changeLanguage(event.target.value)
-    toast.show(i18n.t('language.changed'), 'success')
+  const onLanguageChange = (event) => {
+    actions.setLanguage(event.target.value)
+    toast.show(i18n.t('language.changed', { lng: event.target.value }), 'success')
   }
 
   return (
@@ -36,7 +38,7 @@ export default function MorePage() {
       <Card>
         <Select
           label={t('language.label')}
-          value={languages.includes(i18n.language) ? i18n.language : 'en'}
+          value={state.language}
           onChange={onLanguageChange}
           options={languages.map((code) => ({ value: code, label: t(`language.${code}`) }))}
         />

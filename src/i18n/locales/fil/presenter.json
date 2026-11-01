@@ -1,1 +1,23 @@
-{}
+{
+  "gear": { "label": "Mga gamit", "title": "Mga gamit" },
+  "scenarios": {
+    "title": "Mga sitwasyon",
+    "drowsy1": "Antok: Antas 1, paalala",
+    "drowsy2": "Antok: Antas 2, babala",
+    "drowsy3": "Antok: Antas 3, kritikal",
+    "drowsyEscalation": "Antok: palala nang palala",
+    "crashCancel": "Aksidente: kinansela ng driver",
+    "crashSent": "Aksidente: hindi kinansela",
+    "crashFail": "Aksidente: isang mensahe ang hindi naipadala",
+    "unitOffline": "Nawalan ng koneksyon ang unit, tapos bumalik",
+    "faultCamera": "Problema sa unit: camera",
+    "faultBattery": "Problema sa unit: mahina ang baterya"
+  },
+  "timing": { "title": "Bilis", "quick": "Mabilis", "realistic": "Totoong bilis" },
+  "account": { "title": "Palitan ang account", "driver": "Driver", "family": "Kapamilya", "admin": "Admin" },
+  "data": { "title": "Datos", "reset": "I-reset ang datos", "resetConfirm": "Pindutin ulit para i-reset" },
+  "toast": {
+    "started": "Nagsimula: {{name}}",
+    "finished": "Tapos na: {{name}}. Bilang ng event sa kasaysayan: {{count}}"
+  }
+}

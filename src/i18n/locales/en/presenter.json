@@ -1,1 +1,23 @@
-{}
+{
+  "gear": { "label": "Tools", "title": "Tools" },
+  "scenarios": {
+    "title": "Scenarios",
+    "drowsy1": "Drowsiness: Level 1 caution",
+    "drowsy2": "Drowsiness: Level 2 warning",
+    "drowsy3": "Drowsiness: Level 3 critical",
+    "drowsyEscalation": "Drowsiness: escalation",
+    "crashCancel": "Crash: driver cancels",
+    "crashSent": "Crash: not cancelled",
+    "crashFail": "Crash: one message fails",
+    "unitOffline": "Unit goes offline and returns",
+    "faultCamera": "Unit fault: camera",
+    "faultBattery": "Unit fault: low battery"
+  },
+  "timing": { "title": "Timing", "quick": "Quick", "realistic": "Realistic" },
+  "account": { "title": "Switch account", "driver": "Driver", "family": "Family member", "admin": "Admin" },
+  "data": { "title": "Data", "reset": "Reset data", "resetConfirm": "Tap again to reset" },
+  "toast": {
+    "started": "{{name}} started",
+    "finished": "{{name}} finished. Events in history: {{count}}"
+  }
+}
