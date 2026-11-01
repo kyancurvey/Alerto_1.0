@@ -1,0 +1,25 @@
+{
+  "app": { "name": "Alerto" },
+  "nav": {
+    "home": "Home",
+    "events": "Pangyayari",
+    "map": "Mapa",
+    "vehicles": "Sasakyan",
+    "more": "Iba pa",
+    "people": "Mga Contact at Pamilya",
+    "reports": "Mga Ulat",
+    "settings": "Mga Setting",
+    "admin": "Admin",
+    "main": "Pangunahing menu"
+  },
+  "ui": {
+    "close": "Isara",
+    "loading": "Naglo-load"
+  },
+  "language": {
+    "label": "Wika",
+    "en": "English",
+    "fil": "Filipino",
+    "changed": "Napalitan na ang wika"
+  }
+}

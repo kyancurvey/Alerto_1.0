@@ -1,0 +1,61 @@
+/* Brand colours measured from public/logo.png: navy rgb(20,48,87), amber rgb(253,166,37).
+   The other values come from PLAN.md Section 4. */
+:root {
+  --navy-900: #143057;
+  --navy-700: #1b3a66;
+  --navy-100: #e6ecf5;
+  --amber-500: #fda625;
+  --red-600: #d93025;
+  --green-600: #1e8e3e;
+  --blue-500: #2f6fde;
+  --ink-900: #101828;
+  --ink-600: #475467;
+  --ink-300: #d0d5dd;
+  --surface: #ffffff;
+  --bg: #f5f7fa;
+
+  /* Shape */
+  --radius-card: 14px;
+  --radius-control: 10px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px color-mix(in srgb, var(--ink-900) 8%, transparent);
+  --shadow-md: 0 4px 16px color-mix(in srgb, var(--ink-900) 12%, transparent);
+
+  /* Type: Inter Variable, 16 px body, 600 for headings */
+  --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-heading: 600;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* Touch and layout */
+  --touch: 44px;
+  --control-h: 48px;
+  --topbar-h: 56px;
+  --tabbar-h: 64px;
+  --sidenav-w: 264px;
+  --content-max: 960px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur: 200ms;
+}

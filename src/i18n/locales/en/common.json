@@ -1,0 +1,25 @@
+{
+  "app": { "name": "Alerto" },
+  "nav": {
+    "home": "Home",
+    "events": "Events",
+    "map": "Map",
+    "vehicles": "Vehicles",
+    "more": "More",
+    "people": "Contacts and Family",
+    "reports": "Reports",
+    "settings": "Settings",
+    "admin": "Admin",
+    "main": "Main navigation"
+  },
+  "ui": {
+    "close": "Close",
+    "loading": "Loading"
+  },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "fil": "Filipino",
+    "changed": "Language updated"
+  }
+}
