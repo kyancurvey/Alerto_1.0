@@ -40,6 +40,8 @@
     "title": "Punan",
     "account": "Punan ang account",
     "newDriver": "Punan ang detalye ng bagong driver",
-    "inviteCode": "Punan ang code ng imbitasyon"
+    "inviteCode": "Punan ang code ng imbitasyon",
+    "step": "Punan ang hakbang na ito",
+    "joinAccount": "Punan ang detalye ng kapamilya"
   }
 }

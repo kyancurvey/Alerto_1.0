@@ -16,7 +16,7 @@ const manilaWeekday = (dayStart) => new Date(dayStart + MANILA).getUTCDay()
 const HOUR_WEIGHTS = [0.2, 0.2, 0.2, 0.2, 5, 5, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1, 4, 4, 1.2, 1.2, 1.2, 1.2, 0.6, 0.6, 0.6, 0.1, 0.1]
 
 const VOLUME_DEFAULT = 'medium'
-const DEFAULT_SETTINGS = { countdownS: 30, volume: VOLUME_DEFAULT, language: 'fil', sensitivity: 'normal', positionReports: false, holdDelayMin: 2 }
+export const DEFAULT_SETTINGS = { countdownS: 30, volume: VOLUME_DEFAULT, language: 'fil', sensitivity: 'normal', positionReports: false, holdDelayMin: 2 }
 
 const FLEET = [
   { unit: 'ALT-0001', owner: 'Efren Magat', firmware: '1.4.2', presence: 'online' },
@@ -394,5 +394,6 @@ export function createSeed(now = Date.now()) {
     auditLog: audit,
     remoteLogs,
     run: null,
+    setup: {},
   }
 }

@@ -8,5 +8,7 @@ export const fills = {
   newDriver: { name: 'Maria Santos', email: 'maria@alerto.ph', password: PASSWORD, language: 'fil' },
   newVehicle: { name: 'Jeep ni Maria', plate: 'DAD 3308', route: 'Batangas City – Rosario' },
   newUnit: { id: 'ALT-0012', pairingCode: 'ALT-7K3-92Q' },
+  newContact: { name: 'Rodel Santos', relation: 'spouse', number: '0917 555 0121' },
+  newInvite: { name: 'Aiza Santos', relation: 'daughter' },
   invite: { code: 'ALRT-48K2', name: 'Jonel Dela Cruz', relation: 'son', email: 'jonel@alerto.ph', password: PASSWORD, language: 'fil' },
 }

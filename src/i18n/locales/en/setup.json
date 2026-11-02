@@ -1,5 +1,207 @@
 {
-  "title": "Set up your vehicle",
-  "welcome": "Welcome, {{name}}",
-  "detail": "Next, add your vehicle and claim your Alerto unit."
+  "progress": "Step {{current}} of {{total}}",
+  "progressLabel": "Setup progress",
+  "back": "Back",
+  "next": "Next",
+  "steps": {
+    "vehicle": {
+      "title": "Add your vehicle",
+      "subtitle": "Welcome, {{name}}. Tell us about the jeepney that will carry the unit."
+    },
+    "unit": {
+      "title": "Claim your unit",
+      "subtitle": "Enter the pairing code that comes with your Alerto unit, or scan its QR code."
+    },
+    "contacts": {
+      "title": "Emergency contacts",
+      "subtitle": "These people get a text message if a crash is detected and you do not cancel it."
+    },
+    "invite": {
+      "title": "Invite your family",
+      "subtitle": "Family members can follow your alerts and unit status in the app."
+    },
+    "tests": {
+      "title": "Test the alarm and SMS",
+      "subtitle": "Check that the alarm sounds and that your contacts receive a text."
+    },
+    "install": {
+      "title": "Add Alerto to your phone",
+      "subtitle": "Install the app so it opens like any other app on your phone."
+    }
+  },
+  "vehicle": {
+    "name": "Vehicle name",
+    "nameHint": "A name you will recognise, like Jeep ni Mang Pedro",
+    "plate": "Plate number",
+    "plateHint": "For example: ABC 1234",
+    "route": "Route",
+    "routeHint": "For example: Batangas City – Rosario",
+    "errors": {
+      "nameRequired": "Enter a name for your vehicle.",
+      "plateRequired": "Enter the plate number.",
+      "plateInvalid": "That plate number does not look right. It has three letters and three or four numbers, like ABC 1234.",
+      "plateTaken": "A vehicle with this plate number is already registered.",
+      "routeRequired": "Enter the route."
+    }
+  },
+  "unit": {
+    "code": "Pairing code",
+    "codeHint": "Printed on the unit and on its box. It looks like ALT-1A2-3BC.",
+    "scan": "Scan QR code",
+    "claim": "Claim unit",
+    "claimed": "Unit {{id}} is linked to {{vehicle}}.",
+    "scanTitle": "Scan the QR code",
+    "scanSearching": "Looking for the QR code…",
+    "scanHint": "Hold your phone so the QR code on the unit is inside the frame.",
+    "scanFound": "Code found",
+    "scanCancel": "Cancel",
+    "errors": {
+      "codeRequired": "Enter the pairing code.",
+      "codeFormat": "That does not look like a pairing code. It looks like ALT-1A2-3BC.",
+      "unitNotFound": "We could not find a unit with that code. Check the code and try again.",
+      "unitClaimed": "This unit is already linked to an account. Check the code on your unit and try again.",
+      "qrNotRead": "We could not read a QR code. Move closer and try again."
+    },
+    "health": {
+      "title": "Unit check",
+      "running": "Checking…",
+      "done": "All checks passed.",
+      "attention": "Some checks need attention.",
+      "connection": {
+        "label": "Connection",
+        "ok": "Online, signal {{signal}} of 5",
+        "fault": "Not reachable"
+      },
+      "gps": {
+        "label": "GPS",
+        "ok": "Position found",
+        "fault": "No position yet"
+      },
+      "sensors": {
+        "label": "Motion and crash sensors",
+        "ok": "Working",
+        "fault": "Needs attention"
+      },
+      "camera": {
+        "label": "Camera",
+        "ok": "Working",
+        "fault": "Needs attention"
+      },
+      "battery": {
+        "label": "Battery",
+        "ok": "{{battery}}%",
+        "fault": "{{battery}}%, low"
+      },
+      "firmware": {
+        "label": "Software",
+        "ok": "Version {{firmware}}, up to date",
+        "fault": "Version {{firmware}}, update available"
+      }
+    }
+  },
+  "contacts": {
+    "intro": "Add at least one person. Contacts are messaged in the order you add them.",
+    "listTitle": "Your contacts",
+    "addTitle": "Add a contact",
+    "addAnotherTitle": "Add another contact",
+    "name": "Full name",
+    "relation": "Relationship to you",
+    "relationChoose": "Choose",
+    "number": "Mobile number",
+    "numberHint": "For example: 0917 123 4567",
+    "consent": "This person agreed to be contacted",
+    "consentHint": "They know Alerto will text them if a crash is detected.",
+    "add": "Add contact",
+    "remove": "Remove {{name}}",
+    "agreed": "Agreed",
+    "needOne": "Add at least one contact to continue.",
+    "errors": {
+      "nameRequired": "Enter the full name.",
+      "relationRequired": "Choose how this person is related to you.",
+      "numberRequired": "Enter the mobile number.",
+      "numberInvalid": "That mobile number does not look right. It looks like 0917 123 4567.",
+      "numberTaken": "This number is already in your list.",
+      "consentRequired": "Confirm that this person agreed to be contacted."
+    }
+  },
+  "invite": {
+    "intro": "Family members follow your alerts in the app. Choose who to invite and what they can see.",
+    "name": "Family member's name",
+    "relation": "Relationship to you",
+    "shareTitle": "What they can see",
+    "alerts": "Alerts",
+    "alertsHint": "Crash and critical drowsiness alerts",
+    "map": "Map position",
+    "mapHint": "Where the jeepney is at an alert",
+    "status": "Unit status",
+    "statusHint": "Online or offline, battery and signal",
+    "create": "Create invitation",
+    "ready": "Invitation for {{name}}",
+    "code": "Invitation code",
+    "link": "Invitation link",
+    "copyLink": "Copy link",
+    "copied": "Link copied",
+    "copyFailed": "Could not copy the link. Select it and copy it by hand.",
+    "shareNote": "Send the link or the code to {{name}}. You can change what they see, or remove them, at any time.",
+    "skip": "Skip for now",
+    "errors": {
+      "nameRequired": "Enter the family member's name.",
+      "relationRequired": "Choose how this person is related to you.",
+      "shareRequired": "Choose at least one thing they can see."
+    }
+  },
+  "tests": {
+    "sms": {
+      "title": "Test SMS",
+      "intro": "Send a text to each contact to check that it arrives.",
+      "send": "Send test SMS",
+      "again": "Send again",
+      "contact": "Text message to {{name}}",
+      "sending": "Sending…",
+      "delivered": "Delivered"
+    },
+    "alarm": {
+      "title": "Test alarm",
+      "intro": "Sound the alarm in the cab to check that you can hear it.",
+      "send": "Test alarm",
+      "again": "Test again",
+      "sound": "Alarm sounding in the cab",
+      "heard": "Confirmed by the unit"
+    },
+    "request": "Sending the request to your unit",
+    "received": "Your unit received the request",
+    "passed": "Passed",
+    "bothNeeded": "Run both tests to continue.",
+    "allPassed": "Both tests passed. You are ready to go.",
+    "running": "In progress…"
+  },
+  "install": {
+    "finish": "Finish",
+    "done": "{{name}} is ready. Welcome to Alerto.",
+    "errors": {
+      "incomplete": "Some details are missing. Go back and check each step."
+    }
+  },
+  "installHelp": {
+    "installed": "Alerto is installed on this device.",
+    "button": "Install Alerto",
+    "iphoneTitle": "On iPhone or iPad",
+    "iphone1": "Open Alerto in Safari.",
+    "iphone2": "Tap the Share button at the bottom of the screen.",
+    "iphone3": "Choose Add to Home Screen, then tap Add.",
+    "otherTitle": "On Android or a computer",
+    "otherText": "Open the browser menu and choose Install app or Add to Home screen."
+  },
+  "relations": {
+    "spouse": "Spouse",
+    "parent": "Parent",
+    "son": "Son",
+    "daughter": "Daughter",
+    "brother": "Brother",
+    "sister": "Sister",
+    "relative": "Other relative",
+    "neighbor": "Neighbor",
+    "friend": "Friend",
+    "other": "Other"
+  }
 }

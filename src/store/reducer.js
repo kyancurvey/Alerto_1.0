@@ -1,4 +1,7 @@
 // Pure state transitions. Components never call this directly: they use the actions.
+import { EMPTY_SETUP } from '../lib/setup'
+import { selectVisibleVehicles } from './selectors'
+
 const patchById = (list, id, fn) => list.map((item) => (item.id === id ? fn(item) : item))
 
 export function reducer(state, action) {
@@ -13,9 +16,13 @@ export function reducer(state, action) {
         language: action.language,
         accounts: state.session.accountId ? patchById(state.accounts, state.session.accountId, (account) => ({ ...account, language: action.language })) : state.accounts,
       }
+    // The active vehicle follows the person: if the current one is not theirs, they start on their first one.
     case 'session/start': {
       const account = state.accounts.find((item) => item.id === action.accountId)
-      return account ? { ...state, session: { accountId: account.id }, language: account.language } : state
+      if (!account) return state
+      const visible = selectVisibleVehicles(state, account)
+      const keep = visible.length === 0 || visible.some((vehicle) => vehicle.id === state.activeVehicleId)
+      return { ...state, session: { accountId: account.id }, language: account.language, activeVehicleId: keep ? state.activeVehicleId : visible[0].id }
     }
     case 'session/end':
       return { ...state, session: { accountId: null } }
@@ -23,6 +30,37 @@ export function reducer(state, action) {
       return { ...state, accounts: [...state.accounts, action.account] }
     case 'account/patch':
       return { ...state, accounts: patchById(state.accounts, action.id, (account) => ({ ...account, ...action.patch })) }
+
+    // A family member accepts an invitation: the account is created and the link is marked accepted.
+    case 'join/accept':
+      return {
+        ...state,
+        accounts: [...state.accounts, action.account],
+        familyLinks: patchById(state.familyLinks, action.linkId, (link) => ({
+          ...link,
+          memberId: action.account.id,
+          email: action.account.email,
+          status: 'accepted',
+          acceptedAt: action.now,
+        })),
+      }
+
+    // First-time setup draft, one per driver.
+    case 'setup/patch':
+      return { ...state, setup: { ...state.setup, [action.accountId]: { ...(state.setup?.[action.accountId] ?? EMPTY_SETUP), ...action.patch } } }
+    // Finish: the vehicle, the claimed unit, contacts, settings and invite become real records in one step.
+    case 'setup/finish':
+      return {
+        ...state,
+        setup: Object.fromEntries(Object.entries(state.setup ?? {}).filter(([id]) => id !== action.accountId)),
+        vehicles: [...state.vehicles, action.vehicle],
+        units: patchById(state.units, action.vehicle.unitId, (unit) => ({ ...unit, vehicleId: action.vehicle.id, claimed: true })),
+        contacts: [...state.contacts, ...action.contacts],
+        familyLinks: action.link ? [...state.familyLinks, action.link] : state.familyLinks,
+        settingsVersions: [...state.settingsVersions, action.settings],
+        auditLog: [...action.audit, ...state.auditLog],
+        activeVehicleId: action.vehicle.id,
+      }
 
     case 'app/timing':
       return { ...state, timing: action.timing }

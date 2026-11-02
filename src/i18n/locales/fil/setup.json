@@ -1,5 +1,207 @@
 {
-  "title": "I-set up ang sasakyan mo",
-  "welcome": "Maligayang pagdating, {{name}}",
-  "detail": "Susunod, idagdag ang sasakyan mo at i-claim ang Alerto unit mo."
+  "progress": "Hakbang {{current}} sa {{total}}",
+  "progressLabel": "Takbo ng setup",
+  "back": "Bumalik",
+  "next": "Susunod",
+  "steps": {
+    "vehicle": {
+      "title": "Idagdag ang sasakyan mo",
+      "subtitle": "Maligayang pagdating, {{name}}. Sabihin sa amin ang tungkol sa jeepney na lalagyan ng unit."
+    },
+    "unit": {
+      "title": "I-claim ang unit mo",
+      "subtitle": "Ilagay ang pairing code na kasama ng Alerto unit mo, o i-scan ang QR code nito."
+    },
+    "contacts": {
+      "title": "Mga contact sa emergency",
+      "subtitle": "Sila ang makakatanggap ng text kung may nakitang aksidente at hindi mo ito kinansela."
+    },
+    "invite": {
+      "title": "Imbitahan ang pamilya mo",
+      "subtitle": "Masusubaybayan ng mga kapamilya mo ang mga babala at lagay ng unit sa app."
+    },
+    "tests": {
+      "title": "Subukan ang alarm at SMS",
+      "subtitle": "Tiyaking tumutunog ang alarm at natatanggap ng mga contact mo ang text."
+    },
+    "install": {
+      "title": "Idagdag ang Alerto sa phone mo",
+      "subtitle": "I-install ang app para mabuksan ito na parang ibang app sa phone mo."
+    }
+  },
+  "vehicle": {
+    "name": "Pangalan ng sasakyan",
+    "nameHint": "Pangalang madali mong makikilala, tulad ng Jeep ni Mang Pedro",
+    "plate": "Plate number",
+    "plateHint": "Halimbawa: ABC 1234",
+    "route": "Ruta",
+    "routeHint": "Halimbawa: Batangas City – Rosario",
+    "errors": {
+      "nameRequired": "Maglagay ng pangalan para sa sasakyan mo.",
+      "plateRequired": "Ilagay ang plate number.",
+      "plateInvalid": "Mali ang plate number. Tatlong letra at tatlo o apat na numero ito, tulad ng ABC 1234.",
+      "plateTaken": "May nakarehistro nang sasakyan na may ganitong plate number.",
+      "routeRequired": "Ilagay ang ruta."
+    }
+  },
+  "unit": {
+    "code": "Pairing code",
+    "codeHint": "Nakasulat ito sa unit at sa kahon nito. Ganito ang itsura: ALT-1A2-3BC.",
+    "scan": "I-scan ang QR code",
+    "claim": "I-claim ang unit",
+    "claimed": "Naka-link na ang unit {{id}} sa {{vehicle}}.",
+    "scanTitle": "I-scan ang QR code",
+    "scanSearching": "Hinahanap ang QR code…",
+    "scanHint": "Itapat ang phone para nasa loob ng frame ang QR code ng unit.",
+    "scanFound": "Nakita na ang code",
+    "scanCancel": "Kanselahin",
+    "errors": {
+      "codeRequired": "Ilagay ang pairing code.",
+      "codeFormat": "Hindi ito mukhang pairing code. Ganito ang itsura: ALT-1A2-3BC.",
+      "unitNotFound": "Walang unit na may ganitong code. Pakisuri ang code at subukan ulit.",
+      "unitClaimed": "Naka-link na ang unit na ito sa isang account. Pakisuri ang code sa unit at subukan ulit.",
+      "qrNotRead": "Hindi nabasa ang QR code. Lumapit at subukan ulit."
+    },
+    "health": {
+      "title": "Pagsusuri sa unit",
+      "running": "Sinusuri…",
+      "done": "Pasado ang lahat ng pagsusuri.",
+      "attention": "May mga kailangang ayusin.",
+      "connection": {
+        "label": "Koneksyon",
+        "ok": "Online, signal {{signal}} sa 5",
+        "fault": "Hindi maabot"
+      },
+      "gps": {
+        "label": "GPS",
+        "ok": "Nahanap na ang lokasyon",
+        "fault": "Wala pang lokasyon"
+      },
+      "sensors": {
+        "label": "Mga sensor sa galaw at banggaan",
+        "ok": "Gumagana",
+        "fault": "Kailangang ayusin"
+      },
+      "camera": {
+        "label": "Camera",
+        "ok": "Gumagana",
+        "fault": "Kailangang ayusin"
+      },
+      "battery": {
+        "label": "Baterya",
+        "ok": "{{battery}}%",
+        "fault": "{{battery}}%, mahina"
+      },
+      "firmware": {
+        "label": "Software",
+        "ok": "Bersyon {{firmware}}, pinakabago na",
+        "fault": "Bersyon {{firmware}}, may bagong update"
+      }
+    }
+  },
+  "contacts": {
+    "intro": "Magdagdag ng kahit isang tao. Ite-text sila ayon sa pagkakasunod-sunod ng pagdagdag mo.",
+    "listTitle": "Mga contact mo",
+    "addTitle": "Magdagdag ng contact",
+    "addAnotherTitle": "Magdagdag pa ng contact",
+    "name": "Buong pangalan",
+    "relation": "Kaugnayan sa iyo",
+    "relationChoose": "Pumili",
+    "number": "Mobile number",
+    "numberHint": "Halimbawa: 0917 123 4567",
+    "consent": "Pumayag ang taong ito na ma-contact",
+    "consentHint": "Alam niyang ite-text siya ng Alerto kung may nakitang aksidente.",
+    "add": "Idagdag ang contact",
+    "remove": "Alisin si {{name}}",
+    "agreed": "Pumayag",
+    "needOne": "Magdagdag ng kahit isang contact para magpatuloy.",
+    "errors": {
+      "nameRequired": "Ilagay ang buong pangalan.",
+      "relationRequired": "Piliin kung ano siya sa iyo.",
+      "numberRequired": "Ilagay ang mobile number.",
+      "numberInvalid": "Mali ang mobile number. Ganito ang itsura: 0917 123 4567.",
+      "numberTaken": "Nasa listahan mo na ang numerong ito.",
+      "consentRequired": "Kumpirmahin muna na pumayag ang taong ito na ma-contact."
+    }
+  },
+  "invite": {
+    "intro": "Masusubaybayan ng mga kapamilya ang mga babala mo sa app. Piliin kung sino ang iimbitahan at kung ano ang makikita nila.",
+    "name": "Pangalan ng kapamilya",
+    "relation": "Kaugnayan sa iyo",
+    "shareTitle": "Ano ang makikita nila",
+    "alerts": "Mga babala",
+    "alertsHint": "Mga babala sa aksidente at matinding antok",
+    "map": "Lokasyon sa mapa",
+    "mapHint": "Kung nasaan ang jeepney sa oras ng babala",
+    "status": "Lagay ng unit",
+    "statusHint": "Online o offline, baterya at signal",
+    "create": "Gumawa ng imbitasyon",
+    "ready": "Imbitasyon para kay {{name}}",
+    "code": "Code ng imbitasyon",
+    "link": "Link ng imbitasyon",
+    "copyLink": "Kopyahin ang link",
+    "copied": "Nakopya na ang link",
+    "copyFailed": "Hindi nakopya ang link. Piliin ito at kopyahin nang mano-mano.",
+    "shareNote": "Ipadala ang link o code kay {{name}}. Puwede mong baguhin ang makikita niya, o alisin siya, anumang oras.",
+    "skip": "Laktawan muna",
+    "errors": {
+      "nameRequired": "Ilagay ang pangalan ng kapamilya.",
+      "relationRequired": "Piliin kung ano siya sa iyo.",
+      "shareRequired": "Pumili ng kahit isang puwede niyang makita."
+    }
+  },
+  "tests": {
+    "sms": {
+      "title": "Test SMS",
+      "intro": "Magpadala ng text sa bawat contact para matiyak na dumarating ito.",
+      "send": "Magpadala ng test SMS",
+      "again": "Ipadala ulit",
+      "contact": "Text kay {{name}}",
+      "sending": "Ipinapadala…",
+      "delivered": "Naipadala"
+    },
+    "alarm": {
+      "title": "Test alarm",
+      "intro": "Patunugin ang alarm sa loob ng jeepney para matiyak na naririnig mo ito.",
+      "send": "Test alarm",
+      "again": "Subukan ulit",
+      "sound": "Tumutunog ang alarm sa loob ng jeepney",
+      "heard": "Kumpirmado ng unit"
+    },
+    "request": "Ipinapadala ang kahilingan sa unit mo",
+    "received": "Natanggap ng unit mo ang kahilingan",
+    "passed": "Pasado",
+    "bothNeeded": "Patakbuhin ang dalawang test para magpatuloy.",
+    "allPassed": "Pasado ang dalawang test. Handa ka na.",
+    "running": "Isinasagawa…"
+  },
+  "install": {
+    "finish": "Tapusin",
+    "done": "Handa na ang {{name}}. Maligayang pagdating sa Alerto.",
+    "errors": {
+      "incomplete": "May kulang na detalye. Bumalik at suriin ang bawat hakbang."
+    }
+  },
+  "installHelp": {
+    "installed": "Naka-install na ang Alerto sa device na ito.",
+    "button": "I-install ang Alerto",
+    "iphoneTitle": "Sa iPhone o iPad",
+    "iphone1": "Buksan ang Alerto sa Safari.",
+    "iphone2": "Pindutin ang Share button sa ibaba ng screen.",
+    "iphone3": "Piliin ang Add to Home Screen, tapos pindutin ang Add.",
+    "otherTitle": "Sa Android o computer",
+    "otherText": "Buksan ang menu ng browser at piliin ang Install app o Add to Home screen."
+  },
+  "relations": {
+    "spouse": "Asawa",
+    "parent": "Magulang",
+    "son": "Anak na lalaki",
+    "daughter": "Anak na babae",
+    "brother": "Kapatid na lalaki",
+    "sister": "Kapatid na babae",
+    "relative": "Ibang kamag-anak",
+    "neighbor": "Kapitbahay",
+    "friend": "Kaibigan",
+    "other": "Iba pa"
+  }
 }

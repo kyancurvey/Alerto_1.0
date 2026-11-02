@@ -1,3 +1,5 @@
+import { EMPTY_SETUP } from '../lib/setup'
+
 // Read helpers. Screens use these instead of digging through the state.
 export const selectAccount = (state) => state.accounts.find((account) => account.id === state.session.accountId) ?? null
 export const selectRole = (state) => selectAccount(state)?.role ?? null
@@ -48,3 +50,6 @@ export function selectRecipients(state, vehicleId, audiences, shareKey) {
   if (audiences.includes('admin')) state.accounts.filter((account) => account.role === 'admin').forEach((account) => ids.add(account.id))
   return [...ids]
 }
+
+// The first-time setup draft of a driver (nothing saved yet reads as the empty draft).
+export const selectSetup = (state, accountId) => state.setup?.[accountId] ?? EMPTY_SETUP

@@ -6,3 +6,5 @@ export function latency(min = LATENCY_MIN_MS, max = LATENCY_MAX_MS) {
   const ms = Math.round(min + Math.random() * (max - min))
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
+
+export const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))

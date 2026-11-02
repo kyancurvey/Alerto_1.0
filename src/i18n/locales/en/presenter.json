@@ -40,6 +40,8 @@
     "title": "Fill in",
     "account": "Fill account",
     "newDriver": "Fill new driver details",
-    "inviteCode": "Fill invite code"
+    "inviteCode": "Fill invite code",
+    "step": "Fill this step",
+    "joinAccount": "Fill family member details"
   }
 }
