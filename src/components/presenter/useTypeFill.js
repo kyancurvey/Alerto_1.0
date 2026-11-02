@@ -6,6 +6,7 @@ const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 // Types text into form state one character at a time (instantly when the device asks for less motion).
 // Steps are [setter, text] pairs or plain functions; a newer fill or leaving the screen stops the old one.
+// Resolves true when every step ran, false when it was stopped.
 export default function useTypeFill() {
   const current = useRef(0)
   useEffect(() => () => {
@@ -29,11 +30,12 @@ export default function useTypeFill() {
       set('')
       for (let count = 1; count <= text.length; count += 1) {
         await wait(CHAR_MS)
-        if (!still()) return
+        if (!still()) return false
         set(text.slice(0, count))
       }
       await wait(PAUSE_MS)
-      if (!still()) return
+      if (!still()) return false
     }
+    return true
   }, [])
 }

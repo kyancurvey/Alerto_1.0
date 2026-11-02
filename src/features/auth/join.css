@@ -1,0 +1,24 @@
+/* Join with a code: the steps after the code is entered */
+.join__form { display: flex; flex-direction: column; gap: var(--space-4); }
+.join__hint { color: var(--ink-600); font-size: var(--text-sm); }
+.join__shares { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+.join__share { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); min-height: var(--control-h); }
+.join__share + .join__share { border-top: 1px solid var(--ink-300); }
+.join__share-label { font-weight: var(--weight-medium); }
+.join__bell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-pill);
+  background: var(--navy-100);
+  color: var(--navy-900);
+}
+.join__list { display: flex; flex-direction: column; gap: var(--space-2); margin: 0; padding-inline-start: var(--space-5); }
+
+/* Phones: the gear floats at the bottom right, so the last buttons leave that corner free. */
+@media (max-width: 1023px) {
+  .join__form > .btn:last-child { width: calc(100% - var(--gear-size) - var(--space-2)); }
+}

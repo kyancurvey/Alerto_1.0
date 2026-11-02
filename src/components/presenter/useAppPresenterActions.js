@@ -10,7 +10,8 @@ import { usePresenterActions } from './registry'
 
 // Gear actions for signed-in screens, limited by role: Driver and Family member get scenarios and timing
 // (when they can see a vehicle); the Admin gets Switch account and Reset data only.
-export default function useAppPresenterActions() {
+// A screen can pass its own sections (for example the setup wizard's fill action); they come first.
+export default function useAppPresenterActions(extraSections = []) {
   const { t } = useTranslation('presenter')
   const toast = useToast()
   const { state, actions, getState } = useStore()
@@ -28,7 +29,7 @@ export default function useAppPresenterActions() {
     if (account) actions.switchAccount(account.id)
   }
 
-  const sections = []
+  const sections = [...extraSections]
   if (can(role, 'runScenarios') && hasVehicle) {
     sections.push(
       {
