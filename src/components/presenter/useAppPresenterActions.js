@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next'
-import { useToast } from '../ui'
 import { can } from '../../lib/permissions'
 import { fills } from '../../sim/fills'
 import { scenarios } from '../../sim/scenarios'
@@ -13,16 +12,8 @@ import { usePresenterActions } from './registry'
 // A screen can pass its own sections (for example the setup wizard's fill action); they come first.
 export default function useAppPresenterActions(extraSections = []) {
   const { t } = useTranslation('presenter')
-  const toast = useToast()
-  const { state, actions, getState } = useStore()
+  const { state, actions } = useStore()
   const { role, hasVehicle } = useSession()
-
-  // TEMP: confirms each triggered scenario until Home shows alerts (removed in Prompt 5)
-  const start = (scenarioId) => {
-    const name = t(`scenarios.${scenarioId}`)
-    toast.show(t('toast.started', { name }), 'info')
-    actions.runScenario(scenarioId).then(() => toast.show(t('toast.finished', { name, count: getState().events.length }), 'success'))
-  }
 
   const switchTo = (target) => {
     const account = state.accounts.find((item) => item.email === fills[target].email)
@@ -36,7 +27,7 @@ export default function useAppPresenterActions(extraSections = []) {
         id: 'scenarios',
         title: t('scenarios.title'),
         layout: 'list',
-        items: scenarios.map(({ id }) => ({ id, label: t(`scenarios.${id}`), closeOnSelect: true, onSelect: () => start(id) })),
+        items: scenarios.map(({ id }) => ({ id, label: t(`scenarios.${id}`), closeOnSelect: true, onSelect: () => actions.runScenario(id) })),
       },
       {
         id: 'timing',

@@ -225,6 +225,17 @@
 .empty__description { max-width: 36ch; color: var(--ink-600); }
 .empty__action { margin-top: var(--space-2); }
 
+/* ---------- CheckList ---------- */
+.checks { display: flex; flex-direction: column; gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
+.checks__item { display: flex; align-items: flex-start; gap: var(--space-3); }
+.checks__icon { flex: none; margin-top: 1px; color: var(--ink-300); }
+.checks__text { display: flex; flex-direction: column; }
+.checks__detail { color: var(--ink-600); font-size: var(--text-sm); }
+.checks__item--pending .checks__label { color: var(--ink-600); }
+.checks__item--running .checks__icon { color: var(--blue-500); animation: ui-spin 900ms linear infinite; }
+.checks__item--ok .checks__icon { color: var(--green-600); }
+.checks__item--fault .checks__icon { color: var(--amber-500); }
+
 /* ---------- Tabs ---------- */
 .tabs {
   display: flex;
