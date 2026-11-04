@@ -100,3 +100,43 @@ export function selectRecentCrash(state, vehicleIds, now) {
       .sort((a, b) => b.time - a.time)[0] ?? null
   )
 }
+
+// ---------- Map ----------
+// Which vehicles the Map shows for this person, and whether alert pins may be shown for each.
+// A driver sees their own, a family member the linked drivers' that share map position (pins also need shared alerts),
+// the admin every unit. `locked` is true when a family member is linked but nothing is shared on the map.
+export function selectMapAccess(state, account, { linked, all }) {
+  const withPins = (vehicles, pins) => vehicles.map((vehicle) => ({ vehicle, pins }))
+  if (!account) return { entries: [], locked: false, lockedName: null }
+  if (all) return { entries: withPins(state.vehicles, true), locked: false, lockedName: null }
+  if (!linked) return { entries: withPins(state.vehicles.filter((vehicle) => vehicle.ownerId === account.id), true), locked: false, lockedName: null }
+
+  const links = state.familyLinks.filter((link) => link.memberId === account.id && link.status === 'accepted')
+  const entries = links
+    .filter((link) => link.share.map)
+    .flatMap((link) => withPins(state.vehicles.filter((vehicle) => vehicle.ownerId === link.driverId), Boolean(link.share.alerts)))
+  const hidden = links.find((link) => !link.share.map)
+  const lockedName = hidden ? state.accounts.find((item) => item.id === hidden.driverId)?.name ?? null : null
+  return { entries, locked: entries.length === 0 && Boolean(hidden), lockedName }
+}
+
+// Pins on the map: crash alerts, cancelled crash alerts and Level 3 (critical) drowsiness alerts.
+export function pinKindOf(event) {
+  if (event.type === 'crash_confirmed') return 'crash'
+  if (event.type === 'crash_cancelled') return 'cancelled'
+  if (event.type === 'drowsiness' && event.level === 3) return 'critical'
+  return null
+}
+
+export const selectMapPins = (state, vehicleIds) =>
+  state.events.filter((event) => vehicleIds.includes(event.vehicleId) && pinKindOf(event)).map((event) => ({ event, kind: pinKindOf(event) }))
+
+// A unit that reports its position moves while it is online with the ignition on. It stays put during a crash
+// countdown, while messages go out, and for 30 minutes after a confirmed crash.
+export function selectUnitMoves(state, unit, now) {
+  const { status } = unit
+  if (status.presence !== 'online' || !status.ignition || !status.position) return false
+  if (!selectSettings(state, unit.id)?.positionReports) return false
+  if (status.mode === 'crashCountdown' || status.mode === 'crashSending') return false
+  return !state.events.some((event) => event.vehicleId === unit.vehicleId && event.type === 'crash_confirmed' && now - event.time < RECENT_CRASH_MS)
+}

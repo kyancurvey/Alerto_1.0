@@ -1,5 +1,72 @@
 {
   "title": "Map",
-  "purpose": "Where things happened",
-  "detail": "Last known position and alert pins along the route."
+  "loading": "Loading the map",
+  "mapLabel": "Route map from Batangas City to Rosario",
+  "towns": {
+    "batangasCity": "Batangas City",
+    "ibaan": "Ibaan",
+    "rosario": "Rosario"
+  },
+  "controls": {
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "reset": "Show the whole route"
+  },
+  "updated": "Positions updated",
+  "empty": {
+    "title": "Nothing to show yet",
+    "detail": "When a driver shares their jeepney with you, its position will show here."
+  },
+  "locked": {
+    "title": "Map position is not shared",
+    "detail": "{{name}} has not shared their map position with you. They can turn it on under Contacts and Family.",
+    "detailNoName": "The driver has not shared their map position with you. They can turn it on under Contacts and Family."
+  },
+  "place": {
+    "near": "Near {{town}}",
+    "between": "Between {{from}} and {{to}}"
+  },
+  "legend": {
+    "title": "Key",
+    "vehicle": "Vehicle",
+    "crash": "Crash alert",
+    "cancelled": "Cancelled crash alert",
+    "critical": "Level 3 critical"
+  },
+  "vehicles": {
+    "title": "Vehicles on the map"
+  },
+  "vehicle": {
+    "marker": "{{name}}, {{state}}",
+    "lastSeen": "Last seen",
+    "position": "Position",
+    "live": "Live position. It moves as the unit reports.",
+    "reportsOff": "Live position is off for this vehicle. This is its last known position."
+  },
+  "pin": {
+    "crash": "Crash alert",
+    "cancelled": "Cancelled crash alert",
+    "critical": "Level 3 critical",
+    "event": "Alert",
+    "marker": "{{kind}}, {{time}}",
+    "inProgress": "In progress",
+    "when": "When",
+    "where": "Where",
+    "speed": "Speed",
+    "speedValue": "{{speed}} km/h",
+    "open": "Open event",
+    "around": "Around this alert"
+  },
+  "around": {
+    "title": "Around this alert",
+    "detail": "The route from 5 minutes before to 5 minutes after the alert.",
+    "partial": "The alert is still recent, so only the minutes so far are shown.",
+    "back": "Back to the map",
+    "numbers": "Numbers show speed in km/h, one for each minute.",
+    "before": "Before the alert",
+    "after": "After the alert",
+    "markerBefore": "{{minutes}} min before the alert: {{speed}} km/h",
+    "markerAfter": "{{minutes}} min after the alert: {{speed}} km/h",
+    "markerAfterRange": "{{from}} to {{to}} min after the alert: {{speed}} km/h"
+  }
 }

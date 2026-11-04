@@ -1,5 +1,72 @@
 {
   "title": "Mapa",
-  "purpose": "Kung saan nangyari",
-  "detail": "Huling alam na posisyon at mga alerto sa ruta."
+  "loading": "Naglo-load ang mapa",
+  "mapLabel": "Mapa ng ruta mula Batangas City hanggang Rosario",
+  "towns": {
+    "batangasCity": "Batangas City",
+    "ibaan": "Ibaan",
+    "rosario": "Rosario"
+  },
+  "controls": {
+    "zoomIn": "Palakihin",
+    "zoomOut": "Paliitin",
+    "reset": "Ipakita ang buong ruta"
+  },
+  "updated": "Huling na-update ang mga posisyon",
+  "empty": {
+    "title": "Wala pang makikita",
+    "detail": "Kapag ibinahagi sa iyo ng driver ang kanyang jeepney, lalabas dito ang posisyon nito."
+  },
+  "locked": {
+    "title": "Hindi ibinabahagi ang posisyon sa mapa",
+    "detail": "Hindi pa ibinabahagi sa iyo ni {{name}} ang posisyon niya sa mapa. Puwede niya itong i-on sa Mga Contact at Pamilya.",
+    "detailNoName": "Hindi pa ibinabahagi sa iyo ng driver ang posisyon niya sa mapa. Puwede niya itong i-on sa Mga Contact at Pamilya."
+  },
+  "place": {
+    "near": "Malapit sa {{town}}",
+    "between": "Sa pagitan ng {{from}} at {{to}}"
+  },
+  "legend": {
+    "title": "Mga marka",
+    "vehicle": "Sasakyan",
+    "crash": "Alerto sa aksidente",
+    "cancelled": "Kinanselang alerto sa aksidente",
+    "critical": "Antas 3: kritikal"
+  },
+  "vehicles": {
+    "title": "Mga sasakyan sa mapa"
+  },
+  "vehicle": {
+    "marker": "{{name}}, {{state}}",
+    "lastSeen": "Huling nakita",
+    "position": "Posisyon",
+    "live": "Live ang posisyon. Gumagalaw ito habang nag-uulat ang unit.",
+    "reportsOff": "Naka-off ang live na posisyon ng sasakyang ito. Ito ang huli nitong alam na posisyon."
+  },
+  "pin": {
+    "crash": "Alerto sa aksidente",
+    "cancelled": "Kinanselang alerto sa aksidente",
+    "critical": "Antas 3: kritikal",
+    "event": "Alerto",
+    "marker": "{{kind}}, {{time}}",
+    "inProgress": "Kasalukuyan",
+    "when": "Kailan",
+    "where": "Saan",
+    "speed": "Bilis",
+    "speedValue": "{{speed}} km/h",
+    "open": "Buksan ang pangyayari",
+    "around": "Sa paligid ng alerto"
+  },
+  "around": {
+    "title": "Sa paligid ng alerto",
+    "detail": "Ang ruta mula 5 minuto bago hanggang 5 minuto pagkatapos ng alerto.",
+    "partial": "Kakatapos lang ng alerto, kaya mga minutong lumipas pa lang ang makikita.",
+    "back": "Bumalik sa mapa",
+    "numbers": "Ang mga numero ay bilis sa km/h, isa bawat minuto.",
+    "before": "Bago ang alerto",
+    "after": "Pagkatapos ng alerto",
+    "markerBefore": "{{minutes}} min bago ang alerto: {{speed}} km/h",
+    "markerAfter": "{{minutes}} min pagkatapos ng alerto: {{speed}} km/h",
+    "markerAfterRange": "{{from}} hanggang {{to}} min pagkatapos ng alerto: {{speed}} km/h"
+  }
 }

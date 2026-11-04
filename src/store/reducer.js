@@ -1,6 +1,10 @@
 // Pure state transitions. Components never call this directly: they use the actions.
 import { EMPTY_SETUP } from '../lib/setup'
-import { selectVisibleVehicles } from './selectors'
+import { advanceAlong } from '../lib/route'
+import { selectUnitMoves, selectVisibleVehicles } from './selectors'
+
+// A unit that was not heard from for a while (a reload, a sleeping phone) moves one step, not the whole gap.
+const MAX_MOVE_MS = 6000
 
 const patchById = (list, id, fn) => list.map((item) => (item.id === id ? fn(item) : item))
 
@@ -67,12 +71,16 @@ export function reducer(state, action) {
     case 'app/activeVehicle':
       return { ...state, activeVehicleId: action.vehicleId }
 
-    // Keeps "last seen" fresh for units that are online.
+    // Keeps "last seen" fresh for units that are online, and moves the ones that report their position.
     case 'heartbeat':
       return {
         ...state,
-        units: state.units.map((unit) =>
-          unit.status.presence === 'online' ? { ...unit, status: { ...unit.status, lastSeen: action.now, updatedAt: action.now } } : unit),
+        units: state.units.map((unit) => {
+          if (unit.status.presence !== 'online') return unit
+          const elapsed = Math.min(Math.max(action.now - (unit.status.updatedAt ?? action.now), 0), MAX_MOVE_MS)
+          const position = selectUnitMoves(state, unit, action.now) ? advanceAlong(unit.status.position, elapsed) : unit.status.position
+          return { ...unit, status: { ...unit.status, lastSeen: action.now, updatedAt: action.now, position } }
+        }),
       }
     case 'unit/status':
       return { ...state, units: patchById(state.units, action.unitId, (unit) => ({ ...unit, status: { ...unit.status, ...action.patch } })) }
