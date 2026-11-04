@@ -10,6 +10,10 @@ const localeOf = (language) => (language === 'fil' ? 'fil-PH' : 'en-PH')
 export const formatClock = (ms, language) =>
   new Intl.DateTimeFormat(localeOf(language), { timeZone: 'Asia/Manila', hour: 'numeric', minute: '2-digit', hour12: true }).format(ms)
 
+// Weekday, date and time, for an event: "Mon, Nov 2, 4:12 AM".
+export const formatDayTime = (ms, language) =>
+  new Intl.DateTimeFormat(localeOf(language), { timeZone: 'Asia/Manila', weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }).format(ms)
+
 // "just now", "12 sec. ago", "5 min. ago", "3 hr. ago", "2 days ago". `justNow` is the translated text for under 10 seconds.
 export function formatRelative(ms, now, language, justNow) {
   const seconds = Math.max(0, Math.round((now - ms) / 1000))

@@ -43,3 +43,29 @@ export function pointAt(s) {
   const [lat2, lon2] = POINTS[index]
   return { s: clamped, lat: +(lat1 + (lat2 - lat1) * f).toFixed(5), lon: +(lon1 + (lon2 - lon1) * f).toFixed(5) }
 }
+
+// Where a place is along the route, in words the app can translate: next to a town, or between two.
+const NEAR_TOWN = 0.06
+export function placeOf(s) {
+  const near = ROUTE_TOWNS.find((town) => Math.abs(town.s - s) <= NEAR_TOWN)
+  if (near) return { near: near.key }
+  const after = ROUTE_TOWNS.findIndex((town) => town.s > s)
+  return { from: ROUTE_TOWNS[after - 1].key, to: ROUTE_TOWNS[after].key }
+}
+
+// Live movement. A unit that reports its position moves along the route; the trip is compressed so the
+// marker visibly travels (end to end in about four minutes), and it turns around at either end.
+export const LIVE_ROUTE_SECONDS = 240
+export function advanceAlong(position, ms) {
+  if (!position) return position
+  let dir = position.dir ?? 1
+  let s = position.s + (dir * ms) / 1000 / LIVE_ROUTE_SECONDS
+  if (s > 1) {
+    s = 2 - s
+    dir = -1
+  } else if (s < 0) {
+    s = -s
+    dir = 1
+  }
+  return { ...position, s: +s.toFixed(4), dir }
+}
