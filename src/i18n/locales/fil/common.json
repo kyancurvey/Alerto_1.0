@@ -31,5 +31,8 @@
     "driver": "Driver",
     "family": "Kapamilya",
     "admin": "Admin"
+  },
+  "time": {
+    "justNow": "ngayon lang"
   }
 }

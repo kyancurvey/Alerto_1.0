@@ -1,4 +1,5 @@
 import { EMPTY_SETUP } from '../lib/setup'
+import { manilaDayStart } from '../lib/time'
 
 // Read helpers. Screens use these instead of digging through the state.
 export const selectAccount = (state) => state.accounts.find((account) => account.id === state.session.accountId) ?? null
@@ -53,3 +54,49 @@ export function selectRecipients(state, vehicleId, audiences, shareKey) {
 
 // The first-time setup draft of a driver (nothing saved yet reads as the empty draft).
 export const selectSetup = (state, accountId) => state.setup?.[accountId] ?? EMPTY_SETUP
+
+// ---------- Home ----------
+const FULL_SHARE = { alerts: true, map: true, status: true }
+export const RECENT_CRASH_MS = 30 * 60 * 1000
+
+// Who Home is about. A driver sees their own vehicles. A family member sees one entry per linked driver,
+// with what that driver shares (alerts, map, status).
+export function selectHomeSubjects(state, account, followsLinkedDrivers) {
+  if (!account) return []
+  if (!followsLinkedDrivers) {
+    const vehicles = state.vehicles.filter((vehicle) => vehicle.ownerId === account.id)
+    return vehicles.length ? [{ id: account.id, name: account.name, share: FULL_SHARE, vehicles, linked: false }] : []
+  }
+  return state.familyLinks
+    .filter((link) => link.memberId === account.id && link.status === 'accepted')
+    .map((link) => {
+      const vehicles = state.vehicles.filter((vehicle) => vehicle.ownerId === link.driverId)
+      const name = state.accounts.find((item) => item.id === link.driverId)?.name ?? vehicles[0]?.ownerName ?? ''
+      return { id: link.driverId, name, share: link.share, vehicles, linked: true }
+    })
+    .filter((subject) => subject.vehicles.length > 0)
+}
+
+export const selectAlertsOf = (state, vehicleIds) => state.alerts.filter((alert) => vehicleIds.includes(alert.vehicleId))
+
+// Today's counts for one vehicle (day in Asia/Manila): drowsiness alerts, crash alerts, cancelled alerts, and how many arrived late.
+export function selectTodayCounts(state, vehicleId, now) {
+  const start = manilaDayStart(now)
+  const today = state.events.filter((event) => event.vehicleId === vehicleId && event.time >= start)
+  return {
+    drowsiness: today.filter((event) => event.type === 'drowsiness').length,
+    crash: today.filter((event) => event.type === 'crash_confirmed').length,
+    cancelled: today.filter((event) => event.type === 'crash_cancelled').length,
+    late: today.filter((event) => event.receivedLate).length,
+  }
+}
+
+// The latest crash that has ended in the last 30 minutes, so Home can show how it turned out.
+export function selectRecentCrash(state, vehicleIds, now) {
+  return (
+    state.events
+      .filter((event) => vehicleIds.includes(event.vehicleId) && !event.open && now - event.time < RECENT_CRASH_MS)
+      .filter((event) => event.type === 'crash_confirmed' || event.type === 'crash_cancelled')
+      .sort((a, b) => b.time - a.time)[0] ?? null
+  )
+}

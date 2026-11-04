@@ -31,5 +31,8 @@
     "driver": "Driver",
     "family": "Family member",
     "admin": "Admin"
+  },
+  "time": {
+    "justNow": "just now"
   }
 }

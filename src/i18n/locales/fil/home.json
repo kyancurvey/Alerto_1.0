@@ -1,5 +1,145 @@
 {
   "title": "Home",
-  "purpose": "Kalagayan ng sasakyan sa isang tingin",
-  "detail": "Kalagayan ng unit, mga aktibong alerto, at bilang ngayong araw."
+  "empty": {
+    "title": "Wala ka pang sinusubaybayang driver",
+    "detail": "Kapag ibinahagi sa iyo ng driver ang kanyang jeepney, lalabas ito dito."
+  },
+  "shared": {
+    "nothingTitle": "Wala pang ibinabahagi",
+    "nothingDetail": "Wala pang ibinabahagi sa iyo si {{name}}."
+  },
+  "subject": {
+    "driver": "Driver"
+  },
+  "vehicleSwitch": "Pumili ng sasakyan",
+  "unit": {
+    "presence": {
+      "online": "Online",
+      "parked": "Nakaparada",
+      "offline": "Offline"
+    },
+    "state": {
+      "ready": "Handa",
+      "alerting": "Nag-aalarma",
+      "needsAttention": "Kailangan ng atensyon",
+      "crashCountdown": "Nagbibilang para sa aksidente",
+      "crashSending": "Nagpapadala ng mensahe"
+    },
+    "offlineNote": "Hindi nagpapadala ng ulat ang unit. Ito ang huli nitong kalagayan.",
+    "lastSeen": "Huling nakita",
+    "never": "Wala pa",
+    "ignition": "Ignition",
+    "on": "Naka-on",
+    "off": "Naka-off",
+    "battery": "Baterya",
+    "signal": "Signal",
+    "signalValue": "{{level}} sa 5",
+    "gps": "GPS",
+    "gpsValue": {
+      "good": "Maayos",
+      "weak": "Mahina",
+      "none": "Walang signal"
+    },
+    "firmware": "Firmware",
+    "updateAvailable": "May bagong update",
+    "updated": "Huling na-update",
+    "fault": {
+      "camera": "May problema sa camera. Kailangan ng atensyon ang unit.",
+      "battery": "Mahina ang baterya ng unit.",
+      "sensor": "May problema sa sensor. Kailangan ng atensyon ang unit.",
+      "modem": "May problema sa koneksyon ng unit."
+    }
+  },
+  "alert": {
+    "level1": "Antas 1: paalala",
+    "level2": "Antas 2: babala",
+    "level3": "Antas 3: kritikal",
+    "detail": "Natukoy ang antok",
+    "active": "Aktibo: {{time}}",
+    "map": "Tingnan sa mapa"
+  },
+  "crash": {
+    "badge": "Alerto sa aksidente",
+    "countdownTitle": "Posibleng aksidente",
+    "countdownDetail": "Nagbibilang ang unit. Magte-text ito sa mga emergency contact pagdating ng zero, maliban kung kakanselahin sa loob ng jeepney.",
+    "secondsLeft": "{{count}} segundo na lang",
+    "sendingTitle": "Nagpapadala ng mga mensahe",
+    "sendingDetail": "Isa-isang tine-text ang mga emergency contact.",
+    "sentTitle": "Naipadala ang mga mensahe",
+    "sentDetail": "Na-text ang lahat ng {{total}} contact.",
+    "partialTitle": "{{sent}} sa {{total}} mensahe ang naipadala",
+    "partialDetail": "Patuloy pang sinusubukan ang natitira.",
+    "cancelledTitle": "Kinansela ng driver",
+    "cancelledDetail": "Itinigil ng driver ang countdown. Walang naipadalang mensahe.",
+    "at": "Nang {{time}}",
+    "status": {
+      "queued": "Naghihintay",
+      "sent": "Naipadala",
+      "retrying": "Sinusubukan ulit, pagsubok {{attempt}}"
+    },
+    "event": "Buksan ang pangyayari"
+  },
+  "counts": {
+    "title": "Ngayong araw",
+    "drowsiness": "Alerto sa antok",
+    "crash": "Alerto sa aksidente",
+    "cancelled": "Kinanselang alerto",
+    "late_one": "{{count}} alerto ang huli nang dumating, pagbalik ng koneksyon ng unit.",
+    "late_other": "{{count}} alerto ang huli nang dumating, pagbalik ng koneksyon ng unit."
+  },
+  "actions": {
+    "title": "Mabilis na aksyon",
+    "testAlarm": "Test alarm",
+    "testSms": "Test SMS",
+    "needOnline": "Kailangang online ang unit para sa mga test.",
+    "needClear": "Hindi puwede ang mga test habang may aktibong alerto."
+  },
+  "test": {
+    "doneSms_one": "Naipadala ang test na mensahe sa {{count}} contact.",
+    "doneSms_other": "Naipadala ang test na mensahe sa {{count}} contact.",
+    "doneAlarm": "Tumunog ang alarm at kinumpirma ito ng unit.",
+    "noContacts": "Wala pang emergency contact ang sasakyang ito.",
+    "addContacts": "Magdagdag ng contact",
+    "done": "Tapos na",
+    "cancel": "Isara"
+  },
+  "push": {
+    "dismiss": "Isara",
+    "crash_countdown": {
+      "title": "Posibleng aksidente",
+      "body": "Nagsimula ang {{seconds}}-segundong countdown sa jeepney ni {{driver}}. May ite-text sa mga contact maliban kung makansela."
+    },
+    "crash_cancelled": {
+      "title": "Nakansela ang alerto sa aksidente",
+      "body": "Kinansela ni {{driver}} ang countdown. Walang naipadalang mensahe."
+    },
+    "crash_sms_all": {
+      "title": "Naipadala ang mga mensahe sa aksidente",
+      "body": "Na-text ang lahat ng {{total}} contact ni {{driver}}."
+    },
+    "crash_sms_partial": {
+      "title": "{{sent}} sa {{total}} mensahe sa aksidente ang naipadala",
+      "body": "Patuloy pang sinusubukan ang natitira."
+    },
+    "drowsiness_critical": {
+      "title": "Kritikal na antok",
+      "body": "Umabot sa Antas 3 ang alerto sa unit ni {{driver}}."
+    },
+    "drowsiness_critical_many": {
+      "title": "Kritikal na antok",
+      "body": "{{count}} beses nang naalerto si {{driver}} sa antok. Antas 3 na ang pinakahuli."
+    },
+    "unit_offline": {
+      "title": "Walang koneksyon ang unit",
+      "body": "Hindi na nagpapadala ng ulat ang unit sa {{vehicle}}."
+    },
+    "unit_fault_camera": {
+      "title": "Problema sa camera",
+      "body": "Kailangan ng atensyon ang camera ng unit sa {{vehicle}}."
+    },
+    "unit_fault_battery": {
+      "title": "Mahina ang baterya",
+      "body": "Mahina ang baterya ng unit sa {{vehicle}}."
+    }
+  }
 }

@@ -1,5 +1,145 @@
 {
   "title": "Home",
-  "purpose": "Current status at a glance",
-  "detail": "Unit status, active alerts and today's counts."
+  "empty": {
+    "title": "No linked drivers yet",
+    "detail": "When a driver shares their jeepney with you, it will show up here."
+  },
+  "shared": {
+    "nothingTitle": "Nothing shared yet",
+    "nothingDetail": "{{name}} has not shared anything with you yet."
+  },
+  "subject": {
+    "driver": "Driver"
+  },
+  "vehicleSwitch": "Choose a vehicle",
+  "unit": {
+    "presence": {
+      "online": "Online",
+      "parked": "Parked",
+      "offline": "Offline"
+    },
+    "state": {
+      "ready": "Ready",
+      "alerting": "Alerting",
+      "needsAttention": "Needs attention",
+      "crashCountdown": "Crash countdown",
+      "crashSending": "Sending messages"
+    },
+    "offlineNote": "The unit is not reporting. This is its last known status.",
+    "lastSeen": "Last seen",
+    "never": "Never",
+    "ignition": "Ignition",
+    "on": "On",
+    "off": "Off",
+    "battery": "Battery",
+    "signal": "Signal",
+    "signalValue": "{{level}} of 5",
+    "gps": "GPS fix",
+    "gpsValue": {
+      "good": "Good",
+      "weak": "Weak",
+      "none": "No fix"
+    },
+    "firmware": "Firmware",
+    "updateAvailable": "Update available",
+    "updated": "Last updated",
+    "fault": {
+      "camera": "Camera fault. The unit needs attention.",
+      "battery": "Low battery in the unit.",
+      "sensor": "Sensor fault. The unit needs attention.",
+      "modem": "The unit has a connection problem."
+    }
+  },
+  "alert": {
+    "level1": "Level 1 caution",
+    "level2": "Level 2 warning",
+    "level3": "Level 3 critical",
+    "detail": "Drowsiness detected",
+    "active": "Active {{time}}",
+    "map": "View on map"
+  },
+  "crash": {
+    "badge": "Crash alert",
+    "countdownTitle": "Possible crash detected",
+    "countdownDetail": "The unit is counting down. Messages go to the emergency contacts at zero unless it is cancelled in the cab.",
+    "secondsLeft": "{{count}} seconds left",
+    "sendingTitle": "Sending messages",
+    "sendingDetail": "Texting the emergency contacts one by one.",
+    "sentTitle": "Messages sent",
+    "sentDetail": "All {{total}} contacts were texted.",
+    "partialTitle": "{{sent}} of {{total}} messages sent",
+    "partialDetail": "The rest are still being retried.",
+    "cancelledTitle": "Cancelled by the driver",
+    "cancelledDetail": "The driver stopped the countdown. No messages were sent.",
+    "at": "At {{time}}",
+    "status": {
+      "queued": "Waiting",
+      "sent": "Sent",
+      "retrying": "Retrying, attempt {{attempt}}"
+    },
+    "event": "Open event"
+  },
+  "counts": {
+    "title": "Today",
+    "drowsiness": "Drowsiness alerts",
+    "crash": "Crash alerts",
+    "cancelled": "Cancelled alerts",
+    "late_one": "{{count}} alert arrived late, after the unit reconnected.",
+    "late_other": "{{count}} alerts arrived late, after the unit reconnected."
+  },
+  "actions": {
+    "title": "Quick actions",
+    "testAlarm": "Test alarm",
+    "testSms": "Test SMS",
+    "needOnline": "Tests need the unit to be online.",
+    "needClear": "Tests are not available while an alert is active."
+  },
+  "test": {
+    "doneSms_one": "Test message delivered to {{count}} contact.",
+    "doneSms_other": "Test messages delivered to {{count}} contacts.",
+    "doneAlarm": "The alarm sounded and the unit confirmed it.",
+    "noContacts": "This vehicle has no emergency contacts yet.",
+    "addContacts": "Add contacts",
+    "done": "Done",
+    "cancel": "Close"
+  },
+  "push": {
+    "dismiss": "Dismiss",
+    "crash_countdown": {
+      "title": "Possible crash",
+      "body": "{{driver}}'s jeepney started a {{seconds}}-second countdown. Messages go to the contacts unless it is cancelled."
+    },
+    "crash_cancelled": {
+      "title": "Crash alert cancelled",
+      "body": "{{driver}} cancelled the countdown. No messages were sent."
+    },
+    "crash_sms_all": {
+      "title": "Crash messages sent",
+      "body": "All {{total}} contacts of {{driver}} were texted."
+    },
+    "crash_sms_partial": {
+      "title": "{{sent}} of {{total}} crash messages sent",
+      "body": "The rest are still being retried."
+    },
+    "drowsiness_critical": {
+      "title": "Critical drowsiness",
+      "body": "{{driver}}'s unit declared a Level 3 alert."
+    },
+    "drowsiness_critical_many": {
+      "title": "Critical drowsiness",
+      "body": "{{driver}} had {{count}} drowsiness alerts in a row. The latest is Level 3."
+    },
+    "unit_offline": {
+      "title": "Unit offline",
+      "body": "The unit in {{vehicle}} stopped reporting."
+    },
+    "unit_fault_camera": {
+      "title": "Camera fault",
+      "body": "The camera of the unit in {{vehicle}} needs attention."
+    },
+    "unit_fault_battery": {
+      "title": "Low battery",
+      "body": "The unit in {{vehicle}} has a low battery."
+    }
+  }
 }

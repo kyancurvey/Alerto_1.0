@@ -32,10 +32,6 @@
     "reset": "I-reset ang datos",
     "resetConfirm": "Pindutin ulit para i-reset"
   },
-  "toast": {
-    "started": "Nagsimula: {{name}}",
-    "finished": "Tapos na: {{name}}. Bilang ng event sa kasaysayan: {{count}}"
-  },
   "fill": {
     "title": "Punan",
     "account": "Punan ang account",

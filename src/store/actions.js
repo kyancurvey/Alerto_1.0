@@ -1,7 +1,7 @@
 import { latency } from '../lib/latency'
 import { normalizePhone, normalizePlate, normalizeUnitCode } from '../lib/validate'
 import { createSeed, DEFAULT_SETTINGS } from '../sim/seed'
-import { selectAccount, selectAccountByEmail, selectInviteByCode, selectSetup } from './selectors'
+import { selectAccount, selectAccountByEmail, selectContacts, selectInviteByCode, selectSetup } from './selectors'
 
 let counter = 0
 const newId = (prefix) => `${prefix}_${Date.now().toString(36)}${(counter++).toString(36)}`
@@ -186,6 +186,14 @@ export function createActions(store, engine) {
       ].sort((a, b) => b.time - a.time)
       dispatch({ type: 'setup/finish', accountId: account.id, vehicle, contacts, link, settings, audit })
       return { ok: true, vehicleName: vehicle.name }
+    },
+
+    // A finished Test SMS or Test alarm from Home. The SMS test leaves a delivery result on each contact; the alarm leaves none.
+    recordUnitTest(vehicleId, kind) {
+      if (kind !== 'sms') return
+      const at = Date.now()
+      selectContacts(getState(), vehicleId).forEach((contact) =>
+        dispatch({ type: 'contact/delivery', contactId: contact.id, delivery: { status: 'sent', at, eventId: null, test: true } }))
     },
 
     setLanguage: (language) => dispatch({ type: 'app/language', language }),

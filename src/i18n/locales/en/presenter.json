@@ -32,10 +32,6 @@
     "reset": "Reset data",
     "resetConfirm": "Tap again to reset"
   },
-  "toast": {
-    "started": "{{name}} started",
-    "finished": "{{name}} finished. Events in history: {{count}}"
-  },
   "fill": {
     "title": "Fill in",
     "account": "Fill account",
