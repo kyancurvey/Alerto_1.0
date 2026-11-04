@@ -1,0 +1,61 @@
+/* Map page */
+.mappage { display: flex; flex-direction: column; gap: var(--space-4); }
+.mappage__main,
+.mappage__side { display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; }
+.mappage__map { --map-h: clamp(360px, 62vh, 600px); }
+.mappage__updated { color: var(--ink-600); font-size: var(--text-sm); }
+@media (min-width: 1024px) {
+  .mappage { display: grid; grid-template-columns: minmax(0, 1fr) 340px; align-items: start; }
+  .mappage__map { --map-h: min(74vh, 700px); }
+}
+
+/* Legend */
+.maplegend { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin: 0; padding: 0; list-style: none; }
+.maplegend__item { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--ink-600); font-size: var(--text-sm); }
+.maplegend__swatch { width: 14px; height: 14px; border-radius: var(--radius-pill); background: var(--ink-600); }
+.maplegend__swatch--vehicle,
+.maplegend__swatch--before { background: var(--navy-900); }
+.maplegend__swatch--crash { background: var(--map-crash); }
+.maplegend__swatch--cancelled { background: var(--green-600); }
+.maplegend__swatch--critical { background: var(--red-600); }
+.maplegend__swatch--after { background: var(--blue-500); }
+
+/* Pin and vehicle summary */
+.pinsum { display: flex; flex-direction: column; gap: var(--space-3); }
+.pinsum__badges { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.pinsum__title { font-size: var(--text-lg); }
+.pinsum__sub { margin-top: calc(var(--space-2) * -1); color: var(--ink-600); font-size: var(--text-sm); }
+.pinsum__facts { display: grid; gap: var(--space-2); margin: 0; }
+.pinsum__facts dt { color: var(--ink-600); font-size: var(--text-sm); }
+.pinsum__facts dd { margin: 0; font-weight: var(--weight-medium); }
+.pinsum__note { color: var(--ink-600); font-size: var(--text-sm); }
+.pinsum__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+/* Vehicle list */
+.vehlist { display: flex; flex-direction: column; gap: var(--space-2); }
+.vehlist__title { font-size: var(--text-lg); }
+.vehlist__items { display: flex; flex-direction: column; gap: var(--space-1); max-height: 360px; margin: 0; padding: 0; overflow-y: auto; list-style: none; }
+.vehlist__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: var(--touch);
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid transparent;
+  border-radius: var(--radius-control);
+  background: transparent;
+  text-align: start;
+}
+.vehlist__row:hover { background: var(--navy-100); }
+.vehlist__row--selected { border-color: var(--navy-900); background: var(--navy-100); }
+.vehlist__text { display: flex; flex-direction: column; min-width: 0; }
+.vehlist__name { font-weight: var(--weight-heading); }
+.vehlist__meta { color: var(--ink-600); font-size: var(--text-sm); }
+
+/* Around an alert */
+.around { display: flex; flex-direction: column; gap: var(--space-3); }
+.around__head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: var(--space-3); }
+.around__title { font-size: var(--text-lg); }
+.around__detail { color: var(--ink-600); font-size: var(--text-sm); }

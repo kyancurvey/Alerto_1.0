@@ -21,7 +21,7 @@ export default function AlertBanner({ alert, vehicle, showVehicle, showMap }) {
         <p className="alertbar__time">{t('alert.active', { time: formatElapsed(now - alert.startedAt) })}</p>
       </div>
       {showMap && (
-        <Link to={pathOf('map')} className="btn btn--outline alertbar__map">
+        <Link to={`${pathOf('map')}?alert=${alert.eventId}`} className="btn btn--outline alertbar__map">
           <MapPin size={20} aria-hidden="true" />{t('alert.map')}
         </Link>
       )}

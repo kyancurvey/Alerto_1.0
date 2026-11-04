@@ -88,7 +88,7 @@ export default function CrashCard({ alert, event, contacts, vehicle, showVehicle
       <div className="home__actions">
         <Link to={`${pathOf('events')}/${eventId}`} className="btn btn--outline">{t('crash.event')}</Link>
         {showMap && (
-          <Link to={pathOf('map')} className="btn btn--outline"><MapPin size={20} aria-hidden="true" />{t('alert.map')}</Link>
+          <Link to={`${pathOf('map')}?alert=${eventId}`} className="btn btn--outline"><MapPin size={20} aria-hidden="true" />{t('alert.map')}</Link>
         )}
       </div>
     </Card>
