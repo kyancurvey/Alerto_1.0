@@ -1,6 +1,7 @@
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import AppShell from './components/layout/AppShell'
 import { ToastProvider } from './components/ui'
+import PushLayer from './components/alerts/PushLayer'
 import PresenterGear from './components/presenter/PresenterGear'
 import { StoreProvider } from './store/StoreProvider'
 import HomePage from './features/home/HomePage'
@@ -37,6 +38,7 @@ export default function App() {
               <Route element={<AppShell />}>
                 <Route path={nav.home.to} element={<HomePage />} />
                 <Route path={nav.events.to} element={<EventsPage />} />
+                <Route path={`${nav.events.to}/:eventId`} element={<EventsPage />} />
                 <Route path={nav.map.to} element={<MapPage />} />
                 <Route path={nav.vehicles.to} element={<VehiclesPage />} />
                 <Route path={nav.more.to} element={<MorePage />} />
@@ -48,6 +50,7 @@ export default function App() {
             </Route>
             <Route path="*" element={<RootRedirect />} />
           </Routes>
+          <PushLayer />
         </HashRouter>
         <PresenterGear />
       </ToastProvider>
