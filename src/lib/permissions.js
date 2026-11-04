@@ -9,7 +9,7 @@ const CAPABILITIES = {
     'addVehicle', 'claimUnit', 'changeVehicleSettings', 'manageContacts', 'manageFamily', 'manageNotifications',
     'testAlarm', 'testSms', 'reviewEvents', 'exportEvents', 'viewReports', 'runScenarios',
   ],
-  family: ['acknowledgeEvents', 'addNotes', 'callContacts', 'viewReports', 'runScenarios'],
+  family: ['acknowledgeEvents', 'addNotes', 'callContacts', 'viewReports', 'runScenarios', 'followLinkedDrivers'],
   admin: ['viewAllUnits', 'viewLogs', 'editThresholds', 'exportResearchData', 'viewReports'],
 }
 
