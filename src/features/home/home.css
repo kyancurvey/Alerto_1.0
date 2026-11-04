@@ -1,0 +1,145 @@
+/* Home */
+.home__subject { display: flex; flex-direction: column; gap: var(--space-4); }
+.home__who { display: flex; align-items: center; gap: var(--space-3); }
+.home__who-name { font-size: var(--text-lg); }
+.home__who-role { color: var(--ink-600); font-size: var(--text-sm); }
+.home__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.home__subject .tabs__tab { padding-block: var(--space-2); line-height: 1.25; }
+
+/* Unit card */
+.unit { --amber-text: color-mix(in srgb, var(--amber-500) 55%, var(--ink-900)); display: flex; flex-direction: column; gap: var(--space-3); }
+.unit__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); }
+.unit__sub { color: var(--ink-600); font-size: var(--text-sm); }
+.unit__state { margin: 0; }
+.unit__state .badge { padding: var(--space-2) var(--space-4); font-size: var(--text-base); }
+.unit__note { color: var(--ink-600); }
+.unit__fault {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--amber-500) 16%, var(--surface));
+  font-weight: var(--weight-medium);
+}
+.unit__fault svg { flex: none; color: var(--amber-text); }
+.unit__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3) var(--space-4); margin: 0; }
+.unit__label { display: flex; align-items: center; gap: var(--space-1); color: var(--ink-600); font-size: var(--text-sm); }
+.unit__value { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0; font-weight: var(--weight-medium); }
+.unit__value--warn { color: var(--amber-text); font-weight: var(--weight-heading); }
+.unit__update { font-size: var(--text-xs); }
+.unit__updated { color: var(--ink-600); font-size: var(--text-sm); }
+@media (min-width: 640px) {
+  .unit__facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Active drowsiness alert: Level 1 amber, Level 2 red, Level 3 red with a pulsing ring */
+.alertbar {
+  --level: var(--amber-500);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  border-inline-start: 6px solid var(--level);
+  background: color-mix(in srgb, var(--level) 12%, var(--surface));
+}
+.alertbar--l2,
+.alertbar--l3 { --level: var(--red-600); }
+.alertbar__icon {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-pill);
+  background: var(--level);
+  color: var(--surface);
+}
+.alertbar--l1 .alertbar__icon { color: var(--ink-900); }
+.alertbar--l3 .alertbar__icon::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border: 3px solid var(--level);
+  border-radius: var(--radius-pill);
+  animation: ui-pulse 1.4s ease-out infinite;
+}
+.alertbar__text { display: flex; flex: 1; flex-direction: column; gap: 2px; min-width: 12rem; }
+.alertbar__title { font-size: var(--text-lg); }
+.alertbar__time { color: var(--ink-600); font-size: var(--text-sm); font-variant-numeric: tabular-nums; }
+.alertbar__map { flex: none; }
+
+/* Crash: countdown ring, messages going out, then the outcome */
+.crash {
+  --tone: color-mix(in srgb, var(--red-600) 65%, var(--ink-900));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  border-inline-start: 6px solid var(--tone);
+  background: color-mix(in srgb, var(--tone) 8%, var(--surface));
+}
+.crash--cancelled { --tone: var(--green-600); }
+.crash--partial { --tone: var(--amber-500); }
+.crash__head { display: flex; align-items: flex-start; gap: var(--space-4); }
+.crash__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--tone) 16%, var(--surface));
+  color: var(--tone);
+}
+.crash__text { display: flex; flex: 1; flex-direction: column; align-items: flex-start; gap: var(--space-2); min-width: 0; }
+.crash__title { font-size: var(--text-xl); }
+.crash__meta { color: var(--ink-600); font-size: var(--text-sm); }
+.ring { position: relative; flex: none; width: 96px; height: 96px; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring__track,
+.ring__bar { fill: none; stroke-width: 8; }
+.ring__track { stroke: color-mix(in srgb, var(--tone) 18%, var(--surface)); }
+.ring__bar { stroke: var(--tone); stroke-linecap: round; transition: stroke-dashoffset 200ms linear; }
+.ring__number {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-heading);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Today's counts */
+.counts { display: flex; flex-direction: column; gap: var(--space-3); }
+.counts__title { font-size: var(--text-lg); }
+.counts__tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.counts__tile {
+  --tone: var(--ink-300);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border-top: 4px solid var(--tone);
+  border-radius: var(--radius-control);
+  background: var(--bg);
+}
+.counts__tile--caution { --tone: var(--amber-500); }
+.counts__tile--crash { --tone: color-mix(in srgb, var(--red-600) 65%, var(--ink-900)); }
+.counts__tile--neutral { --tone: var(--navy-900); }
+.counts__number { font-size: var(--text-2xl); font-weight: var(--weight-heading); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.counts__label { color: var(--ink-600); font-size: var(--text-sm); overflow-wrap: anywhere; }
+.counts__late { color: var(--ink-600); font-size: var(--text-sm); }
+
+/* Quick actions and the test sheet */
+.quick { display: flex; flex-direction: column; gap: var(--space-3); }
+.quick__title { font-size: var(--text-lg); }
+.quick__buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+.quick__buttons .btn { padding-inline: var(--space-3); white-space: nowrap; }
+.quick__hint { color: var(--ink-600); font-size: var(--text-sm); }
+.home__test { display: flex; flex-direction: column; gap: var(--space-4); }
+.home__test-result { color: var(--green-600); font-weight: var(--weight-heading); }

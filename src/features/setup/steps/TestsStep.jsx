@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Badge, Button } from '../../../components/ui'
+import { Badge, Button, CheckList } from '../../../components/ui'
 import { latency, wait } from '../../../lib/latency'
 import { useStore } from '../../../store/StoreProvider'
-import CheckList from '../CheckList'
 import StepNav from '../StepNav'
 import useAlive from '../useAlive'
 
