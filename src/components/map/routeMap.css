@@ -1,0 +1,106 @@
+/* The drawn map. Colours come from the map tokens in tokens.css. */
+.routemap {
+  position: relative;
+  width: 100%;
+  height: var(--map-h, 420px);
+  overflow: hidden;
+  background: var(--map-land);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.routemap--still { touch-action: auto; }
+.routemap__svg { display: block; }
+
+.routemap__controls {
+  position: absolute;
+  top: var(--space-3);
+  inset-inline-start: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.routemap__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch);
+  height: var(--touch);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--navy-900);
+  box-shadow: var(--shadow-md);
+}
+.routemap__btn:hover { background: var(--navy-100); }
+
+/* Scenery */
+.rm-land { fill: var(--map-land); }
+.rm-water { fill: var(--map-water); }
+.rm-patch { fill: var(--map-land-alt); }
+.rm-side,
+.rm-road-edge,
+.rm-road,
+.rm-trail { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.rm-side { stroke: var(--map-road); stroke-width: 4px; }
+.rm-road-edge { stroke: var(--map-road-edge); stroke-width: 12px; }
+.rm-road { stroke: var(--map-road); stroke-width: 8px; }
+
+/* Towns */
+.rm-town { fill: var(--navy-900); stroke: var(--surface); stroke-width: 3px; }
+.rm-label {
+  fill: var(--ink-900);
+  stroke: var(--map-land);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-heading);
+}
+
+/* Trail around an alert: navy before, blue after, a speed marker each minute */
+.rm-trail { stroke-width: 7px; opacity: 0.85; }
+.rm-trail--before { stroke: var(--navy-900); }
+.rm-trail--after { stroke: var(--blue-500); }
+.rm-speed__dot { fill: var(--navy-900); stroke: var(--surface); stroke-width: 2px; }
+.rm-speed--after .rm-speed__dot { fill: var(--blue-500); }
+.rm-speed__text {
+  fill: var(--surface);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-heading);
+  font-variant-numeric: tabular-nums;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+/* Markers */
+.rm-live { transition: transform 5s linear; }
+.rm-marker { cursor: pointer; outline: none; }
+.rm-marker[role='button']:focus-visible .rm-focus { opacity: 1; }
+.rm-hit { fill: transparent; }
+.rm-focus { fill: none; stroke: var(--blue-500); stroke-width: 3px; opacity: 0; }
+.rm-icon { color: var(--surface); pointer-events: none; }
+.rm-pin,
+.rm-vehicle { stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+.rm-vehicle { fill: var(--navy-900); }
+.rm-marker--idle .rm-vehicle { fill: var(--ink-600); }
+.rm-marker--crash { --pin: var(--map-crash); }
+.rm-marker--critical { --pin: var(--red-600); }
+.rm-marker--cancelled { --pin: var(--green-600); }
+.rm-marker--event { --pin: var(--navy-900); }
+.rm-pin { fill: var(--pin, var(--navy-900)); }
+.rm-pulse { fill: none; stroke: var(--pin, var(--green-600)); stroke-width: 3px; transform-box: fill-box; transform-origin: center; animation: rm-pulse 1.8s ease-out infinite; pointer-events: none; }
+.rm-marker--vehicle .rm-pulse { stroke: var(--green-600); }
+.rm-ring { fill: none; stroke: var(--amber-500); stroke-width: 4px; }
+.rm-marker--selected .rm-pin { stroke: var(--amber-500); stroke-width: 4px; }
+.rm-marker--new { animation: rm-drop 450ms var(--ease) both; }
+@keyframes rm-pulse {
+  from { transform: scale(0.8); opacity: 0.9; }
+  to { transform: scale(2.2); opacity: 0; }
+}
+@keyframes rm-drop {
+  from { transform: translateY(-24px) scale(0.4); opacity: 0; }
+}
