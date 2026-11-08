@@ -1,0 +1,69 @@
+/* Vehicles: list, detail, add */
+.vehicles__add { align-self: flex-start; }
+.vehicles__group { display: flex; flex-direction: column; gap: var(--space-3); }
+.vehicles__who { display: flex; align-items: center; gap: var(--space-3); }
+.vehicles__who-name { font-size: var(--text-lg); }
+.vehicles__who-role { color: var(--ink-600); font-size: var(--text-sm); }
+.vehicles__locked { display: flex; align-items: flex-start; gap: var(--space-3); color: var(--ink-600); }
+.vehicles__locked svg { flex: none; color: var(--navy-900); }
+.vehicles__locked h3,
+.vehicles__locked-title { color: var(--ink-900); font-size: var(--text-base); }
+
+/* Vehicle card */
+.vcard__link { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-4); }
+.vcard__link:hover { background: var(--navy-100); }
+.vcard__text { display: flex; flex: 1; flex-direction: column; gap: var(--space-1); min-width: 0; }
+.vcard__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); }
+.vcard__name { font-size: var(--text-lg); }
+.vcard__sub { color: var(--ink-600); font-size: var(--text-sm); }
+.vcard__badges { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-2); }
+.vcard__chevron { flex: none; color: var(--ink-600); }
+
+/* Detail */
+.vdetail__back { align-self: flex-start; padding-inline: var(--space-3); }
+.vdetail__head { display: flex; flex-direction: column; gap: var(--space-1); }
+.vdetail__row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.vdetail__sub { color: var(--ink-600); }
+.vdetail__warn {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  background: color-mix(in srgb, var(--amber-500) 16%, var(--surface));
+}
+.vdetail__warn svg { flex: none; color: color-mix(in srgb, var(--amber-500) 55%, var(--ink-900)); }
+.vdetail__warn > div { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+.vdetail__warn-title { font-size: var(--text-base); }
+
+/* Sections */
+.vsection { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+.vsection > * { max-width: 100%; }
+.vsection > .checks,
+.vsection > .vform,
+.vsection > .vsettings__status,
+.vsection > .vprogress { align-self: stretch; }
+.vsection__title { font-size: var(--text-lg); }
+.vsection__row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); margin: 0; }
+.vsection__meta { color: var(--ink-600); font-size: var(--text-sm); }
+.vsection__note { color: var(--ink-600); }
+.vsection__ok { color: var(--green-600); font-weight: var(--weight-heading); }
+.vsection__warn { color: color-mix(in srgb, var(--amber-500) 55%, var(--ink-900)); font-weight: var(--weight-heading); }
+
+/* Forms */
+.vform { display: flex; flex-direction: column; gap: var(--space-4); }
+.vform__buttons { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+@media (min-width: 1024px) {
+  .vform { max-width: var(--form-max); }
+}
+
+/* Settings status: pending, then applied, with the version */
+.vsettings__status { display: flex; flex-direction: column; gap: var(--space-2); }
+.vsettings__line { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); margin: 0; }
+
+/* Software update progress */
+.vprogress { display: flex; flex-direction: column; gap: var(--space-2); }
+.vprogress__bar { height: 10px; overflow: hidden; border-radius: var(--radius-pill); background: var(--navy-100); }
+.vprogress__fill { display: block; height: 100%; border-radius: var(--radius-pill); background: var(--blue-500); transition: width var(--dur) var(--ease); }
+
+/* Calibration sheet */
+.vsheet { display: flex; flex-direction: column; gap: var(--space-4); }
+.vsheet__list { display: flex; flex-direction: column; gap: var(--space-2); margin: 0; padding-inline-start: var(--space-5); color: var(--ink-600); }

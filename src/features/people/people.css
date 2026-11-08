@@ -1,0 +1,60 @@
+/* Contacts and Family */
+.people__tabs .tabs__tab { padding-block: var(--space-2); line-height: 1.25; }
+.psection { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+.psection > .pcontacts,
+.psection > .pmembers,
+.psection > .empty { align-self: stretch; }
+.psection__title { font-size: var(--text-lg); }
+.psection__intro,
+.psection__hint { color: var(--ink-600); font-size: var(--text-sm); }
+
+/* Contacts */
+.pcontacts { display: flex; flex-direction: column; gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
+.pcontact { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--space-3); }
+.pcontact__order {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  background: var(--navy-900);
+  color: var(--surface);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-heading);
+}
+.pcontact__main { display: flex; flex: 1; flex-direction: column; align-items: flex-start; gap: var(--space-1); min-width: 0; }
+.pcontact__name { font-weight: var(--weight-heading); }
+.pcontact__detail { color: var(--ink-600); font-size: var(--text-sm); }
+.pcontact__badges { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; }
+.pcontact__link { color: var(--blue-500); font-weight: var(--weight-medium); text-decoration: underline; }
+.pcontact__actions { display: flex; flex-wrap: wrap; gap: var(--space-1); width: 100%; padding-inline-start: calc(32px + var(--space-3)); }
+.pcontact__actions .btn { padding-inline: var(--space-3); }
+.pcontact__actions .pcontact__icon { padding: 0; }
+
+/* Family */
+.pmembers { display: flex; flex-direction: column; gap: var(--space-5); margin: 0; padding: 0; list-style: none; }
+.pmember { display: flex; flex-direction: column; gap: var(--space-3); padding-bottom: var(--space-5); border-bottom: 1px solid var(--ink-300); }
+.pmember:last-child { padding-bottom: 0; border-bottom: 0; }
+.pmember__head { display: flex; align-items: center; gap: var(--space-3); }
+.pmember__who { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+.pmember__name { font-weight: var(--weight-heading); }
+.pmember__detail { color: var(--ink-600); font-size: var(--text-sm); overflow-wrap: anywhere; }
+.pmember__invite { display: flex; flex-direction: column; gap: var(--space-2); }
+.pmember__remove { align-self: flex-start; }
+.pview__who { display: flex; align-items: center; gap: var(--space-3); }
+.pview__vehicle { display: flex; flex-direction: column; gap: var(--space-3); align-self: stretch; }
+.pview__vehicle-name { font-size: var(--text-base); }
+
+/* Forms in sheets */
+.pform { display: flex; flex-direction: column; gap: var(--space-4); }
+.pform__buttons { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.pform__note { color: var(--ink-600); font-size: var(--text-sm); }
+.pform__fieldset { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; margin: 0; padding: 0; border: 0; }
+.pform__legend { padding: 0; font-weight: var(--weight-heading); }
+.pinvite__facts { display: flex; flex-direction: column; gap: var(--space-3); margin: 0; }
+.pinvite__facts dt { color: var(--ink-600); font-size: var(--text-sm); }
+.pinvite__facts dd { margin: 0; }
+.pinvite__code { font-size: var(--text-xl); font-weight: var(--weight-heading); letter-spacing: 0.08em; }
+.pinvite__link { overflow-wrap: anywhere; font-size: var(--text-sm); }
