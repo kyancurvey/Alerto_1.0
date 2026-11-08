@@ -1,3 +1,4 @@
+import { ALERT_TYPES } from '../lib/events'
 import { EMPTY_SETUP } from '../lib/setup'
 import { manilaDayStart } from '../lib/time'
 
@@ -139,4 +140,40 @@ export function selectUnitMoves(state, unit, now) {
   if (!selectSettings(state, unit.id)?.positionReports) return false
   if (status.mode === 'crashCountdown' || status.mode === 'crashSending') return false
   return !state.events.some((event) => event.vehicleId === unit.vehicleId && event.type === 'crash_confirmed' && now - event.time < RECENT_CRASH_MS)
+}
+
+// ---------- Events ----------
+// Which vehicles' events this person may open, and what each driver shares: alerts, unit status, map position.
+// A driver sees their own, a family member the linked drivers' (only what is shared), the admin every unit.
+export function selectEventScope(state, account, { linked, all }) {
+  const full = { alerts: true, status: true, map: true }
+  if (!account) return []
+  if (all) return state.vehicles.map((vehicle) => ({ vehicle, ...full }))
+  if (!linked) return state.vehicles.filter((vehicle) => vehicle.ownerId === account.id).map((vehicle) => ({ vehicle, ...full }))
+  return state.familyLinks
+    .filter((link) => link.memberId === account.id && link.status === 'accepted')
+    .flatMap((link) =>
+      state.vehicles
+        .filter((vehicle) => vehicle.ownerId === link.driverId)
+        .map((vehicle) => ({ vehicle, alerts: Boolean(link.share.alerts), status: Boolean(link.share.status), map: Boolean(link.share.map) })))
+}
+
+// Alerts follow "alerts", unit faults and power events follow "unit status".
+export const eventAllowed = (event, entry) => (ALERT_TYPES.includes(event.type) ? entry.alerts : entry.status)
+
+export function selectVisibleEvents(state, scope) {
+  const byVehicle = new Map(scope.map((entry) => [entry.vehicle.id, entry]))
+  return state.events
+    .filter((event) => {
+      const entry = byVehicle.get(event.vehicleId)
+      return entry && eventAllowed(event, entry)
+    })
+    .sort((a, b) => b.time - a.time)
+}
+
+// One event the person may open, with the sharing entry of its vehicle. Null when it does not exist or is not theirs.
+export function selectEventDetail(state, scope, eventId) {
+  const event = state.events.find((item) => item.id === eventId)
+  const entry = event ? scope.find((item) => item.vehicle.id === event.vehicleId) : null
+  return event && entry && eventAllowed(event, entry) ? { event, entry } : null
 }

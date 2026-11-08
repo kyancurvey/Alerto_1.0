@@ -12,8 +12,14 @@ function unitOf(api) {
   return selectUnitOfVehicle(api.getState(), api.vehicleId)
 }
 
+// Timeline steps are stamped in unit time (the scenario's own waits), so an event reads the same in Quick,
+// in Realistic, and when a reload finishes the run at once. Each new event restarts the clock.
+const stamp = (api) => (api.ctx.baseTime ?? api.now) + (api.unitMs - (api.ctx.baseMs ?? 0))
+
 function createEvent(api, { type, level = null, measurements, open = true, outcome = null }) {
   const unit = unitOf(api)
+  api.ctx.baseTime = api.now
+  api.ctx.baseMs = api.unitMs
   return {
     id: newId('evt'),
     type,
@@ -37,7 +43,7 @@ function createEvent(api, { type, level = null, measurements, open = true, outco
   }
 }
 
-const step = (api, eventId, kind, extra = {}) => api.dispatch({ type: 'event/timeline', id: eventId, step: { at: Date.now(), kind, ...extra } })
+const step = (api, eventId, kind, extra = {}) => api.dispatch({ type: 'event/timeline', id: eventId, step: { at: stamp(api), kind, ...extra } })
 
 function closeEvent(api, eventId, outcome, kind, patch = {}) {
   step(api, eventId, kind)
@@ -68,7 +74,7 @@ export const ops = {
       level,
       measurements: { closureS: +closure.toFixed(1), perclos: +perclos.toFixed(2), yawnCount: api.rng.int(0, level + 1) },
     })
-    event.timeline = [{ at: Date.now(), kind: 'detected', level }, { at: Date.now() + 1, kind: 'alarm', level }]
+    event.timeline = [{ at: event.time, kind: 'detected', level }, { at: event.time + 400, kind: 'alarm', level }]
     api.dispatch({ type: 'event/add', event })
     ctx.eventId = event.id
     ctx.levels = (ctx.levels ?? 0) + 1
@@ -100,7 +106,7 @@ export const ops = {
         ? { peakG: +api.rng.float(6.5, 13).toFixed(1), deltaVKmh: api.rng.int(10, 28), tiltDeg: api.rng.int(2, 20) }
         : { peakG: +api.rng.float(11, 21).toFixed(1), deltaVKmh: api.rng.int(24, 46), tiltDeg: api.rng.int(8, 70) },
     })
-    event.timeline = [{ at: Date.now(), kind: 'impact' }]
+    event.timeline = [{ at: event.time, kind: 'impact' }]
     api.dispatch({ type: 'event/add', event })
     ctx.eventId = event.id
     ctx.alertId = newId('alr')
@@ -173,7 +179,7 @@ export const ops = {
     const event = api.getState().events.find((item) => item.id === ctx.eventId)
     const sent = event.sms.filter((entry) => entry.status === 'sent').length
     const total = event.sms.length
-    closeEvent(api, ctx.eventId, sent === total ? 'sms_sent' : 'sms_partial', 'queued')
+    api.dispatch({ type: 'event/patch', id: ctx.eventId, patch: { open: false, outcome: sent === total ? 'sms_sent' : 'sms_partial' } })
     api.dispatch({ type: 'alert/end', id: ctx.alertId })
     restoreMode(api)
     notify(api, { kind: 'crash_sms', audiences: ['family'], shareKey: 'alerts', params: { sent, total } })

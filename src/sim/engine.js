@@ -25,8 +25,10 @@ export function createEngine({ getState, dispatch }) {
     const current = run.steps[run.next]
     const inserted = []
     const ctx = { ...run.ctx }
+    // Unit time since the run started: the scenario's own waits added up, whatever speed the run is shown at.
+    const unitMs = run.steps.slice(0, run.next + 1).reduce((sum, item) => sum + item.wait, 0)
     ops[current.op](
-      { getState, dispatch, ctx, rng: createRng(run.seed + run.next), now: Date.now(), speed: speed(), vehicleId: run.vehicleId, insert: (steps) => inserted.push(...steps) },
+      { getState, dispatch, ctx, rng: createRng(run.seed + run.next), now: Date.now(), unitMs, speed: speed(), vehicleId: run.vehicleId, insert: (steps) => inserted.push(...steps) },
       current.args ?? {},
     )
     dispatch({ type: 'run/advance', insert: inserted, ctx })

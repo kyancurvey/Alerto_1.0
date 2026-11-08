@@ -1,7 +1,11 @@
+import { REVIEW_CHOICES } from '../lib/events'
 import { latency } from '../lib/latency'
+import { can } from '../lib/permissions'
 import { normalizePhone, normalizePlate, normalizeUnitCode } from '../lib/validate'
 import { createSeed, DEFAULT_SETTINGS } from '../sim/seed'
 import { selectAccount, selectAccountByEmail, selectContacts, selectInviteByCode, selectSetup } from './selectors'
+
+export const NOTE_MAX = 300
 
 let counter = 0
 const newId = (prefix) => `${prefix}_${Date.now().toString(36)}${(counter++).toString(36)}`
@@ -194,6 +198,44 @@ export function createActions(store, engine) {
       const at = Date.now()
       selectContacts(getState(), vehicleId).forEach((contact) =>
         dispatch({ type: 'contact/delivery', contactId: contact.id, delivery: { status: 'sent', at, eventId: null, test: true } }))
+    },
+
+    // ---------- Event follow-up ----------
+    // A family member confirms they have seen an alert. Doing it twice changes nothing.
+    async acknowledgeEvent(eventId) {
+      await latency()
+      const state = getState()
+      const account = selectAccount(state)
+      const event = state.events.find((item) => item.id === eventId)
+      if (!account || !event) return { ok: false, error: 'notFound' }
+      if (!can(account.role, 'acknowledgeEvents')) return { ok: false, error: 'notAllowed' }
+      if (event.acks.some((ack) => ack.accountId === account.id)) return { ok: true }
+      dispatch({ type: 'event/patch', id: eventId, patch: { acks: [...event.acks, { accountId: account.id, name: account.name, at: Date.now() }] } })
+      return { ok: true }
+    },
+    async addEventNote(eventId, text) {
+      await latency()
+      const state = getState()
+      const account = selectAccount(state)
+      const event = state.events.find((item) => item.id === eventId)
+      const trimmed = String(text ?? '').trim()
+      if (!account || !event) return { ok: false, error: 'notFound' }
+      if (!can(account.role, 'addNotes')) return { ok: false, error: 'notAllowed' }
+      if (!trimmed) return { ok: false, error: 'noteEmpty' }
+      if (trimmed.length > NOTE_MAX) return { ok: false, error: 'noteLong' }
+      dispatch({ type: 'event/patch', id: eventId, patch: { notes: [...event.notes, { id: newId('note'), accountId: account.id, name: account.name, at: Date.now(), text: trimmed }] } })
+      return { ok: true }
+    },
+    // The driver says whether an alert was real or a false alarm.
+    async reviewEvent(eventId, review) {
+      await latency()
+      const state = getState()
+      const account = selectAccount(state)
+      const event = state.events.find((item) => item.id === eventId)
+      if (!account || !event) return { ok: false, error: 'notFound' }
+      if (!can(account.role, 'reviewEvents') || !REVIEW_CHOICES.includes(review)) return { ok: false, error: 'notAllowed' }
+      dispatch({ type: 'event/patch', id: eventId, patch: { review, reviewedBy: account.id, reviewedAt: Date.now() } })
+      return { ok: true }
     },
 
     setLanguage: (language) => dispatch({ type: 'app/language', language }),
