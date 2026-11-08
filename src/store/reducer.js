@@ -7,6 +7,10 @@ import { selectUnitMoves, selectVisibleVehicles } from './selectors'
 const MAX_MOVE_MS = 6000
 
 const patchById = (list, id, fn) => list.map((item) => (item.id === id ? fn(item) : item))
+// New audit entries go to the front: the log reads newest first.
+const withAudit = (log, entries = []) => (entries.length ? [...entries, ...log] : log)
+// A software update that has run its course: the unit now runs the new version.
+const finishUpdate = (unit) => ({ ...unit, firmware: unit.update.to, update: null })
 
 export function reducer(state, action) {
   switch (action.type) {
@@ -72,16 +76,24 @@ export function reducer(state, action) {
       return { ...state, activeVehicleId: action.vehicleId }
 
     // Keeps "last seen" fresh for units that are online, and moves the ones that report their position.
-    case 'heartbeat':
-      return {
-        ...state,
-        units: state.units.map((unit) => {
-          if (unit.status.presence !== 'online') return unit
+    // Settings waiting for a unit that can be reached are applied once their time has come, and finished updates land.
+    case 'heartbeat': {
+      const units = state.units.map((unit) => {
+        let next = unit
+        if (unit.status.presence === 'online') {
           const elapsed = Math.min(Math.max(action.now - (unit.status.updatedAt ?? action.now), 0), MAX_MOVE_MS)
           const position = selectUnitMoves(state, unit, action.now) ? advanceAlong(unit.status.position, elapsed) : unit.status.position
-          return { ...unit, status: { ...unit.status, lastSeen: action.now, updatedAt: action.now, position } }
-        }),
-      }
+          next = { ...unit, status: { ...unit.status, lastSeen: action.now, updatedAt: action.now, position } }
+        }
+        return next.update && next.update.endsAt <= action.now ? finishUpdate(next) : next
+      })
+      const reachable = new Set(units.filter((unit) => unit.status.presence !== 'offline').map((unit) => unit.id))
+      const due = (item) => item.status === 'pending' && (item.applyAt ?? 0) <= action.now && reachable.has(item.unitId)
+      const settingsVersions = state.settingsVersions.some(due)
+        ? state.settingsVersions.map((item) => (due(item) ? { ...item, status: 'applied', appliedAt: action.now } : item))
+        : state.settingsVersions
+      return { ...state, units, settingsVersions }
+    }
     case 'unit/status':
       return { ...state, units: patchById(state.units, action.unitId, (unit) => ({ ...unit, status: { ...unit.status, ...action.patch } })) }
     case 'unit/health':
@@ -134,6 +146,85 @@ export function reducer(state, action) {
     }
     case 'run/clear':
       return { ...state, run: null }
+
+    // ---------- Vehicles ----------
+    // A driver adds a vehicle and claims its unit in one step. The unit starts reporting as soon as it is linked.
+    case 'vehicle/add':
+      return {
+        ...state,
+        vehicles: [...state.vehicles, action.vehicle],
+        units: patchById(state.units, action.vehicle.unitId, (unit) => ({ ...unit, vehicleId: action.vehicle.id, claimed: true, status: { ...unit.status, ...action.status } })),
+        settingsVersions: [...state.settingsVersions, action.settings],
+        auditLog: withAudit(state.auditLog, action.audit),
+      }
+    // A settings change is a new version. It waits for the unit; an older version still waiting is replaced by it.
+    case 'settings/add':
+      return {
+        ...state,
+        settingsVersions: [
+          ...state.settingsVersions.map((item) => (item.unitId === action.version.unitId && item.status === 'pending' ? { ...item, status: 'superseded' } : item)),
+          action.version,
+        ],
+        auditLog: withAudit(state.auditLog, action.audit),
+      }
+    case 'settings/apply': {
+      const version = state.settingsVersions.find((item) => item.id === action.id)
+      const unit = version ? state.units.find((item) => item.id === version.unitId) : null
+      if (!version || version.status !== 'pending' || !unit || unit.status.presence === 'offline') return state
+      return { ...state, settingsVersions: patchById(state.settingsVersions, action.id, (item) => ({ ...item, status: 'applied', appliedAt: action.now })) }
+    }
+    case 'unit/calibration':
+      return { ...state, units: patchById(state.units, action.unitId, (unit) => ({ ...unit, calibration: action.calibration })), auditLog: withAudit(state.auditLog, action.audit) }
+    case 'unit/updateStart':
+      return { ...state, units: patchById(state.units, action.unitId, (unit) => ({ ...unit, update: action.update })), auditLog: withAudit(state.auditLog, action.audit) }
+    case 'unit/updateDone':
+      return { ...state, units: patchById(state.units, action.unitId, (unit) => (unit.update && unit.update.endsAt === action.endsAt ? finishUpdate(unit) : unit)) }
+
+    // ---------- Contacts ----------
+    case 'contact/add':
+      return { ...state, contacts: [...state.contacts, action.contact], auditLog: withAudit(state.auditLog, action.audit) }
+    case 'contact/patch':
+      return { ...state, contacts: patchById(state.contacts, action.id, (contact) => ({ ...contact, ...action.patch })), auditLog: withAudit(state.auditLog, action.audit) }
+    // Removing a contact closes the gap in the order.
+    case 'contact/remove': {
+      const rest = state.contacts.filter((contact) => contact.id !== action.id)
+      const order = rest.filter((contact) => contact.vehicleId === action.vehicleId).sort((a, b) => a.priority - b.priority).map((contact) => contact.id)
+      return {
+        ...state,
+        contacts: rest.map((contact) => (contact.vehicleId === action.vehicleId ? { ...contact, priority: order.indexOf(contact.id) + 1 } : contact)),
+        auditLog: withAudit(state.auditLog, action.audit),
+      }
+    }
+    // `ids` is the whole list of the vehicle's contacts in the new order.
+    case 'contact/order':
+      return {
+        ...state,
+        contacts: state.contacts.map((contact) => (contact.vehicleId === action.vehicleId ? { ...contact, priority: action.ids.indexOf(contact.id) + 1 } : contact)),
+        auditLog: withAudit(state.auditLog, action.audit),
+      }
+
+    // ---------- Family ----------
+    case 'family/add':
+      return { ...state, familyLinks: [...state.familyLinks, action.link], auditLog: withAudit(state.auditLog, action.audit) }
+    case 'family/share':
+      return { ...state, familyLinks: patchById(state.familyLinks, action.id, (link) => ({ ...link, share: action.share })), auditLog: withAudit(state.auditLog, action.audit) }
+    // Removing access ends it at once: the link is gone, the person's alerts for this driver are withdrawn,
+    // and a contact that used the app is no longer tied to an account (they are still texted).
+    case 'family/remove': {
+      const link = state.familyLinks.find((item) => item.id === action.id)
+      if (!link) return state
+      const vehicleIds = state.vehicles.filter((vehicle) => vehicle.ownerId === link.driverId).map((vehicle) => vehicle.id)
+      const own = (vehicleId) => vehicleIds.includes(vehicleId)
+      return {
+        ...state,
+        familyLinks: state.familyLinks.filter((item) => item.id !== link.id),
+        contacts: link.memberId ? state.contacts.map((contact) => (contact.linkedAccountId === link.memberId && own(contact.vehicleId) ? { ...contact, linkedAccountId: null } : contact)) : state.contacts,
+        notifications: link.memberId
+          ? state.notifications.map((item) => (own(item.vehicleId) && item.recipients.includes(link.memberId) ? { ...item, recipients: item.recipients.filter((id) => id !== link.memberId) } : item))
+          : state.notifications,
+        auditLog: withAudit(state.auditLog, action.audit),
+      }
+    }
 
     default:
       return state

@@ -4,6 +4,8 @@ import { can } from '../lib/permissions'
 import { normalizePhone, normalizePlate, normalizeUnitCode } from '../lib/validate'
 import { createSeed, DEFAULT_SETTINGS } from '../sim/seed'
 import { selectAccount, selectAccountByEmail, selectContacts, selectInviteByCode, selectSetup } from './selectors'
+import { createPeopleActions } from './peopleActions'
+import { createVehicleActions } from './vehicleActions'
 
 export const NOTE_MAX = 300
 
@@ -193,10 +195,11 @@ export function createActions(store, engine) {
     },
 
     // A finished Test SMS or Test alarm from Home. The SMS test leaves a delivery result on each contact; the alarm leaves none.
-    recordUnitTest(vehicleId, kind) {
+    // With a contact id, only that contact is tested.
+    recordUnitTest(vehicleId, kind, contactId = null) {
       if (kind !== 'sms') return
       const at = Date.now()
-      selectContacts(getState(), vehicleId).forEach((contact) =>
+      selectContacts(getState(), vehicleId).filter((contact) => !contactId || contact.id === contactId).forEach((contact) =>
         dispatch({ type: 'contact/delivery', contactId: contact.id, delivery: { status: 'sent', at, eventId: null, test: true } }))
     },
 
@@ -237,6 +240,10 @@ export function createActions(store, engine) {
       dispatch({ type: 'event/patch', id: eventId, patch: { review, reviewedBy: account.id, reviewedAt: Date.now() } })
       return { ok: true }
     },
+
+    // ---------- Vehicles, Contacts and Family ----------
+    ...createVehicleActions(store),
+    ...createPeopleActions(store),
 
     setLanguage: (language) => dispatch({ type: 'app/language', language }),
     setTiming: (timing) => dispatch({ type: 'app/timing', timing }),

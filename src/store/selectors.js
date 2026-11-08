@@ -177,3 +177,36 @@ export function selectEventDetail(state, scope, eventId) {
   const entry = event ? scope.find((item) => item.vehicle.id === event.vehicleId) : null
   return event && entry && eventAllowed(event, entry) ? { event, entry } : null
 }
+
+// ---------- Vehicles, Contacts and Family ----------
+// A unit that is online or parked can be reached; an offline one cannot, so changes wait for it.
+export const unitReachable = (unit) => unit.status.presence !== 'offline'
+
+// The latest settings version the unit runs (applied) and the one still waiting for it (pending).
+export function selectSettingsStatus(state, unitId) {
+  const mine = state.settingsVersions.filter((item) => item.unitId === unitId).sort((a, b) => b.version - a.version)
+  return { applied: mine.find((item) => item.status === 'applied') ?? null, pending: mine.find((item) => item.status === 'pending') ?? null }
+}
+
+// One vehicle the person may open (a driver's own, a linked driver's for family). Null when it is not theirs.
+export const selectVehicleFor = (state, account, vehicleId) => selectVisibleVehicles(state, account).find((vehicle) => vehicle.id === vehicleId) ?? null
+
+// The family links of a driver: members who joined and people who were invited.
+export const selectFamilyLinks = (state, driverId) => state.familyLinks.filter((link) => link.driverId === driverId)
+
+// Where the unit stands with a software update. `progress` runs from 0 to 1 while it is being installed.
+export function selectUpdate(state, unit, now) {
+  if (unit.update) return { phase: 'updating', progress: Math.min(1, Math.max(0, (now - unit.update.startedAt) / (unit.update.endsAt - unit.update.startedAt))), to: unit.update.to }
+  return { phase: unit.firmware === state.meta.latestFirmware ? 'upToDate' : 'available', progress: 0, to: state.meta.latestFirmware }
+}
+
+// One vehicle with its unit and what the person may see of it. A driver sees everything of their own;
+// a family member sees what the driver shares (unit status is what the Vehicles screens need).
+export function selectVehicleAccess(state, account, vehicleId) {
+  const vehicle = selectVehicleFor(state, account, vehicleId)
+  if (!vehicle) return null
+  const unit = selectUnitOfVehicle(state, vehicle.id)
+  if (account.role !== 'family') return { vehicle, unit, share: FULL_SHARE }
+  const link = state.familyLinks.find((item) => item.memberId === account.id && item.status === 'accepted' && item.driverId === vehicle.ownerId)
+  return link ? { vehicle, unit, share: link.share } : null
+}

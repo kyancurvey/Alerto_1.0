@@ -20,3 +20,6 @@ export function normalizeUnitCode(value) {
   const match = String(value).toUpperCase().replace(/[^A-Z0-9]/g, '').match(/^ALT([A-Z0-9]{3})([A-Z0-9]{3})$/)
   return match ? `ALT-${match[1]}-${match[2]}` : null
 }
+
+// A link that opens the phone's dialler for a number such as "0917 555 0101".
+export const telHref = (number) => `tel:${String(number).replace(/\D/g, '')}`
