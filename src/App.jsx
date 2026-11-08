@@ -6,6 +6,7 @@ import PresenterGear from './components/presenter/PresenterGear'
 import { StoreProvider } from './store/StoreProvider'
 import HomePage from './features/home/HomePage'
 import EventsPage from './features/events/EventsPage'
+import EventDetailPage from './features/events/EventDetailPage'
 import MapPage from './features/map/MapPage'
 import VehiclesPage from './features/vehicles/VehiclesPage'
 import MorePage from './features/more/MorePage'
@@ -38,7 +39,7 @@ export default function App() {
               <Route element={<AppShell />}>
                 <Route path={nav.home.to} element={<HomePage />} />
                 <Route path={nav.events.to} element={<EventsPage />} />
-                <Route path={`${nav.events.to}/:eventId`} element={<EventsPage />} />
+                <Route path={`${nav.events.to}/:eventId`} element={<EventDetailPage />} />
                 <Route path={nav.map.to} element={<MapPage />} />
                 <Route path={nav.vehicles.to} element={<VehiclesPage />} />
                 <Route path={nav.more.to} element={<MorePage />} />
