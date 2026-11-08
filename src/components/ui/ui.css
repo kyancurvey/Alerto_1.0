@@ -105,6 +105,7 @@
 .field__control:hover { border-color: var(--ink-600); }
 .field__control:focus-visible { border-color: var(--blue-500); outline-offset: 0; }
 .field__control[aria-invalid='true'] { border-color: var(--red-600); }
+.field__control--area { padding: var(--space-3) var(--space-4); line-height: 1.4; resize: vertical; }
 .field__box { position: relative; }
 .field__control--trailing { padding-inline-end: calc(var(--touch) + var(--space-2)); }
 .field__trailing {
