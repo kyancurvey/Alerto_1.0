@@ -1,5 +1,249 @@
 {
   "title": "Pangyayari",
-  "purpose": "Kasaysayan at detalye ng mga alerto",
-  "detail": "Salain, suriin, at sundan ang bawat alerto."
+  "loading": "Kinukuha ang mga pangyayari",
+  "back": "Bumalik",
+  "count_one": "{{count}} pangyayari",
+  "count_other": "{{count}} pangyayari",
+  "day": {
+    "today": "Ngayon",
+    "yesterday": "Kahapon"
+  },
+  "type": {
+    "drowsiness": "Alerto sa antok",
+    "crash_confirmed": "Alerto sa banggaan",
+    "crash_cancelled": "Kinansela ang alerto sa banggaan",
+    "impact_no_alert": "Tama, walang alerto",
+    "camera_fault": "Sira ang camera",
+    "sensor_fault": "Sira ang sensor",
+    "power": "Pangyayari sa kuryente"
+  },
+  "level": {
+    "1": "Antas 1 · Babala",
+    "2": "Antas 2 · Panganib",
+    "3": "Antas 3 · Kritikal"
+  },
+  "outcome": {
+    "cleared": "Naayos",
+    "escalated": "Tumaas ang antas",
+    "sms_sent": "Naipadala ang mga mensahe",
+    "sms_partial": "May mga mensaheng hindi pa naipapadala",
+    "cancelled_by_driver": "Kinansela ng driver",
+    "dismissed": "Walang alertong ipinadala",
+    "resolved": "Naayos na",
+    "logged": "Naitala"
+  },
+  "badge": {
+    "inProgress": "Nagpapatuloy",
+    "late": "Late dumating",
+    "acknowledged": "Natanggap na"
+  },
+  "review": {
+    "title": "Totoo ba ang alertong ito?",
+    "unreviewed": "Hindi pa nasusuri",
+    "real": "Totoo",
+    "false_alarm": "Maling alarma",
+    "cancelled": "Kinansela sa jeep",
+    "status": {
+      "unreviewed": "Hindi mo pa nasusuri ang alertong ito.",
+      "real": "Minarkahang totoong alerto.",
+      "false_alarm": "Minarkahang maling alarma.",
+      "cancelled": "Kinansela mo ang alertong ito sa jeep. Maaari mo pa rin itong markahan."
+    },
+    "choice": {
+      "real": "Totoong alerto",
+      "false_alarm": "Maling alarma"
+    },
+    "saved": "Nai-save ang pagsusuri"
+  },
+  "filters": {
+    "title": "Mga filter",
+    "vehicle": "Sasakyan",
+    "allVehicles": "Lahat ng sasakyan",
+    "type": "Uri",
+    "allTypes": "Lahat ng uri",
+    "level": "Antas ng alerto",
+    "allLevels": "Lahat ng antas",
+    "levelHint": "Sa mga alerto sa antok lang ang antas.",
+    "period": "Panahon",
+    "from": "Mula",
+    "to": "Hanggang",
+    "clear": "Alisin ang mga filter",
+    "periods": {
+      "any": "Kahit kailan",
+      "today": "Ngayon",
+      "7": "Huling 7 araw",
+      "30": "Huling 30 araw",
+      "custom": "Pumili ng petsa"
+    }
+  },
+  "empty": {
+    "title": "Wala pang pangyayari",
+    "detail": "Dito lalabas ang mga alerto at ulat ng unit."
+  },
+  "noMatch": {
+    "title": "Walang tugma",
+    "detail": "Subukang baguhin o alisin ang mga filter."
+  },
+  "none": {
+    "title": "Wala pang maipapakita",
+    "detail": "Kapag ibinahagi sa iyo ng driver ang jeep niya, dito lalabas ang mga pangyayari."
+  },
+  "locked": {
+    "title": "Hindi ibinahagi ang mga pangyayari",
+    "detail": "Hindi ibinahagi ng driver sa iyo ang mga alerto o ang lagay ng unit. Maaari niya itong baguhin sa Contacts at Pamilya."
+  },
+  "notFound": {
+    "title": "Hindi namin makita ang pangyayaring ito",
+    "detail": "Maaaring natanggal na ito, o hindi ito ibinahagi sa iyo.",
+    "action": "Pumunta sa mga pangyayari"
+  },
+  "live": {
+    "countdown_one": "{{count}} segundo na lang sa countdown",
+    "countdown_other": "{{count}} segundo na lang sa countdown",
+    "sending": "Ipinapadala na ang mga mensahe sa mga contact."
+  },
+  "timeline": {
+    "title": "Ano ang nangyari",
+    "started": "Nagsimula nang {{time}}",
+    "start": "Simula",
+    "waiting": "Naghihintay sa unit"
+  },
+  "step": {
+    "detected": "Natukoy ang antok, Antas {{level}}",
+    "alarm": "Tumunog ang alarma, Antas {{level}}",
+    "button_pressed": "Pinindot ng driver ang button",
+    "cleared": "Gising na ulit ang driver, tapos na ang alerto",
+    "escalated": "Tumaas sa susunod na antas",
+    "impact": "May tumamang malakas",
+    "confirmed": "Kumpirmadong banggaan",
+    "countdown_started": "Nagsimula ang countdown, {{seconds}} segundo",
+    "cancelled": "Kinansela ng driver pagkatapos ng {{seconds}} segundo",
+    "sending": "Ipinapadala ang mga mensahe sa mga contact",
+    "sms_sent": "Naipadala ang mensahe kay {{name}}",
+    "sms_retrying": "Hindi pa naipadala ang mensahe kay {{name}}, uulitin (ika-{{attempt}} subok)",
+    "afterRetries": "Naipadala sa ika-{{attempt}} subok",
+    "dismissed": "Maliit ang tama, walang alertong ipinadala",
+    "face_not_visible": "Hindi makita ng camera ang mukha",
+    "fault_logged": "Naitala ang sira",
+    "resolved": "Naayos na",
+    "logged": "Naitala"
+  },
+  "sms": {
+    "title": "Mga mensahe sa mga contact",
+    "summary": "{{sent}} sa {{total}} ang naipadala",
+    "cancelled": "Kinansela ng driver ang countdown, kaya walang naipadalang mensahe.",
+    "waiting": "Ipapadala ang mga mensahe pagkatapos ng countdown.",
+    "none": "Walang naitalang mensahe para sa pangyayaring ito.",
+    "unknownContact": "Natanggal na contact",
+    "attempts_one": "{{count}} subok",
+    "attempts_other": "{{count}} subok",
+    "delay": "pagkatapos ng {{seconds}} s",
+    "status": {
+      "queued": "Naghihintay",
+      "sent": "Naipadala",
+      "retrying": "Inuulit",
+      "failed": "Hindi naipadala"
+    }
+  },
+  "measure": {
+    "title": "Mga sukat",
+    "closure": "Haba ng pagpikit ng mata",
+    "perclos": "PERCLOS (saradong mata)",
+    "yawns": "Bilang ng hikab",
+    "peakG": "Pinakamalakas na tama",
+    "deltaV": "Pagbabago ng bilis",
+    "tilt": "Pagkiling",
+    "reason": "Dahilan",
+    "sensor": "Sensor",
+    "check": "Pagsusuri",
+    "power": "Kuryente",
+    "battery": "Baterya",
+    "seconds": "{{value}} s",
+    "percent": "{{value}}%",
+    "g": "{{value}} g",
+    "kmh": "{{value}} km/h",
+    "degrees": "{{value}}°",
+    "secondsOld": "{{value}} s na ang tanda",
+    "reasonValue": {
+      "face_not_visible": "Hindi makita ang mukha",
+      "camera_covered": "Natakpan ang camera"
+    },
+    "sensorValue": {
+      "icm42670": "Sensor ng galaw"
+    },
+    "checkValue": {
+      "stuck_axis": "Tumigil sa pagbabago ang isang axis"
+    },
+    "powerValue": {
+      "ignition_off_hold": "Patay ang makina, nakabukas pa ang unit",
+      "low_battery": "Mahina ang baterya",
+      "supply_lost": "Nawalan ng kuryente"
+    }
+  },
+  "facts": {
+    "title": "Mga detalye",
+    "when": "Kailan",
+    "vehicle": "Sasakyan",
+    "unit": "Unit",
+    "where": "Saan",
+    "speed": "Bilis",
+    "fixAge": "Tanda ng GPS fix",
+    "received": "Dumating sa app",
+    "lateNote": "Offline ang unit, kaya dumating ang pangyayaring ito pagkatapos nitong kumonekta ulit.",
+    "placeHidden": "Hindi ibinahagi ng driver sa iyo ang posisyon sa mapa, kaya nakatago ang lugar."
+  },
+  "map": {
+    "title": "Posisyon",
+    "around": "Sa paligid ng alertong ito",
+    "locked": "Hindi ibinahagi ng driver sa iyo ang posisyon sa mapa."
+  },
+  "follow": {
+    "title": "Pagsubaybay",
+    "nobody": "Wala pang nakatanggap nito.",
+    "ackBy": "Natanggap ni {{name}}",
+    "acknowledge": "Natanggap ko na",
+    "youAcknowledged": "Natanggap mo na ito",
+    "acknowledged": "Natanggap na",
+    "notes": "Mga tala",
+    "noNotes": "Wala pang tala.",
+    "addNote": "Magdagdag ng tala",
+    "saveNote": "Idagdag ang tala",
+    "noteHint": "Hanggang {{max}} letra.",
+    "noteEmpty": "Magsulat muna ng tala.",
+    "noteLong": "Gawing mas maikli sa {{max}} letra ang tala.",
+    "noteAdded": "Naidagdag ang tala",
+    "error": "Hindi gumana. Pakisubukan ulit."
+  },
+  "csv": {
+    "button": "I-export ang CSV",
+    "file": "alerto-pangyayari",
+    "done_one": "Na-export ang {{count}} pangyayari",
+    "done_other": "Na-export ang {{count}} pangyayari",
+    "yes": "Oo",
+    "no": "Hindi",
+    "id": "ID ng pangyayari",
+    "time": "Petsa at oras",
+    "vehicle": "Sasakyan",
+    "plate": "Plaka",
+    "unit": "Unit",
+    "type": "Uri",
+    "level": "Antas",
+    "outcome": "Kinalabasan",
+    "review": "Pagsusuri",
+    "speed": "Bilis (km/h)",
+    "fixAge": "Tanda ng GPS fix (s)",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "closure": "Pagpikit ng mata (s)",
+    "perclos": "PERCLOS (%)",
+    "yawns": "Hikab",
+    "peakG": "Pinakamalakas na tama (g)",
+    "deltaV": "Pagbabago ng bilis (km/h)",
+    "tilt": "Pagkiling (digri)",
+    "smsSent": "Naipadalang mensahe",
+    "smsTotal": "Kabuuang mensahe",
+    "acknowledgedBy": "Natanggap ni",
+    "notes": "Mga tala",
+    "receivedLate": "Late dumating"
+  }
 }

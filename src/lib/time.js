@@ -30,3 +30,15 @@ export function formatElapsed(ms) {
   const total = Math.max(0, Math.floor(ms / 1000))
   return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`
 }
+
+// Day heading in a list: "Monday, November 2".
+export const formatDayHeading = (ms, language) =>
+  new Intl.DateTimeFormat(localeOf(language), { timeZone: 'Asia/Manila', weekday: 'long', month: 'long', day: 'numeric' }).format(ms)
+
+// Date and time for a spreadsheet: "2026-11-02 04:12:09" (Asia/Manila, 24-hour, sorts correctly).
+export const formatSheetTime = (ms) =>
+  new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Manila', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }).format(ms)
+
+// Date only, for a file name: "2026-11-02".
+export const formatSheetDate = (ms) =>
+  new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Manila', year: 'numeric', month: '2-digit', day: '2-digit' }).format(ms)

@@ -1,5 +1,249 @@
 {
   "title": "Events",
-  "purpose": "History and details of alerts",
-  "detail": "Filter, review and follow up on every alert."
+  "loading": "Loading events",
+  "back": "Back",
+  "count_one": "{{count}} event",
+  "count_other": "{{count}} events",
+  "day": {
+    "today": "Today",
+    "yesterday": "Yesterday"
+  },
+  "type": {
+    "drowsiness": "Drowsiness alert",
+    "crash_confirmed": "Crash alert",
+    "crash_cancelled": "Crash alert cancelled",
+    "impact_no_alert": "Impact, no alert",
+    "camera_fault": "Camera fault",
+    "sensor_fault": "Sensor fault",
+    "power": "Power event"
+  },
+  "level": {
+    "1": "Level 1 · Caution",
+    "2": "Level 2 · Warning",
+    "3": "Level 3 · Critical"
+  },
+  "outcome": {
+    "cleared": "Cleared",
+    "escalated": "Escalated",
+    "sms_sent": "Messages sent",
+    "sms_partial": "Some messages pending",
+    "cancelled_by_driver": "Cancelled by the driver",
+    "dismissed": "No alert sent",
+    "resolved": "Resolved",
+    "logged": "Logged"
+  },
+  "badge": {
+    "inProgress": "In progress",
+    "late": "Arrived late",
+    "acknowledged": "Acknowledged"
+  },
+  "review": {
+    "title": "Was this alert real?",
+    "unreviewed": "Not reviewed",
+    "real": "Marked real",
+    "false_alarm": "Marked false alarm",
+    "cancelled": "Cancelled in the cab",
+    "status": {
+      "unreviewed": "You have not reviewed this alert yet.",
+      "real": "Marked as a real alert.",
+      "false_alarm": "Marked as a false alarm.",
+      "cancelled": "You cancelled this alert in the cab. You can still mark it."
+    },
+    "choice": {
+      "real": "Real alert",
+      "false_alarm": "False alarm"
+    },
+    "saved": "Review saved"
+  },
+  "filters": {
+    "title": "Filters",
+    "vehicle": "Vehicle",
+    "allVehicles": "All vehicles",
+    "type": "Type",
+    "allTypes": "All types",
+    "level": "Alert level",
+    "allLevels": "All levels",
+    "levelHint": "Levels only apply to drowsiness alerts.",
+    "period": "Period",
+    "from": "From",
+    "to": "To",
+    "clear": "Clear filters",
+    "periods": {
+      "any": "Any time",
+      "today": "Today",
+      "7": "Last 7 days",
+      "30": "Last 30 days",
+      "custom": "Choose dates"
+    }
+  },
+  "empty": {
+    "title": "No events yet",
+    "detail": "Alerts and unit reports will show up here."
+  },
+  "noMatch": {
+    "title": "No events match",
+    "detail": "Try changing or clearing the filters."
+  },
+  "none": {
+    "title": "Nothing to show yet",
+    "detail": "When a driver shares their jeepney with you, its events will show here."
+  },
+  "locked": {
+    "title": "Events are not shared",
+    "detail": "The driver has not shared alerts or unit status with you. They can change this under Contacts and Family."
+  },
+  "notFound": {
+    "title": "We can't find this event",
+    "detail": "It may have been removed, or it belongs to someone who has not shared it with you.",
+    "action": "Go to events"
+  },
+  "live": {
+    "countdown_one": "{{count}} second left in the countdown",
+    "countdown_other": "{{count}} seconds left in the countdown",
+    "sending": "Sending messages to the contacts now."
+  },
+  "timeline": {
+    "title": "What happened",
+    "started": "Started at {{time}}",
+    "start": "Start",
+    "waiting": "Waiting for the unit"
+  },
+  "step": {
+    "detected": "Drowsiness detected, Level {{level}}",
+    "alarm": "Alarm sounded, Level {{level}}",
+    "button_pressed": "Driver pressed the button",
+    "cleared": "Driver attentive again, alert cleared",
+    "escalated": "Went up to the next level",
+    "impact": "Impact detected",
+    "confirmed": "Crash confirmed",
+    "countdown_started": "Countdown started, {{seconds}} seconds",
+    "cancelled": "Cancelled by the driver after {{seconds}} seconds",
+    "sending": "Sending messages to the contacts",
+    "sms_sent": "Message sent to {{name}}",
+    "sms_retrying": "Message to {{name}} not delivered, retrying (attempt {{attempt}})",
+    "afterRetries": "Delivered on attempt {{attempt}}",
+    "dismissed": "Impact was too small, no alert sent",
+    "face_not_visible": "Face not visible to the camera",
+    "fault_logged": "Fault logged",
+    "resolved": "Resolved",
+    "logged": "Logged"
+  },
+  "sms": {
+    "title": "Messages to contacts",
+    "summary": "{{sent}} of {{total}} sent",
+    "cancelled": "The driver cancelled the countdown, so no messages were sent.",
+    "waiting": "Messages go out when the countdown ends.",
+    "none": "No messages were recorded for this event.",
+    "unknownContact": "Removed contact",
+    "attempts_one": "{{count}} attempt",
+    "attempts_other": "{{count}} attempts",
+    "delay": "after {{seconds}} s",
+    "status": {
+      "queued": "Waiting",
+      "sent": "Sent",
+      "retrying": "Retrying",
+      "failed": "Failed"
+    }
+  },
+  "measure": {
+    "title": "Measurements",
+    "closure": "Eye closure time",
+    "perclos": "PERCLOS (eyes closed)",
+    "yawns": "Yawns",
+    "peakG": "Peak force",
+    "deltaV": "Change in speed",
+    "tilt": "Tilt",
+    "reason": "Reason",
+    "sensor": "Sensor",
+    "check": "Check",
+    "power": "Power",
+    "battery": "Battery",
+    "seconds": "{{value}} s",
+    "percent": "{{value}}%",
+    "g": "{{value}} g",
+    "kmh": "{{value}} km/h",
+    "degrees": "{{value}}°",
+    "secondsOld": "{{value}} s old",
+    "reasonValue": {
+      "face_not_visible": "Face not visible",
+      "camera_covered": "Camera covered"
+    },
+    "sensorValue": {
+      "icm42670": "Motion sensor"
+    },
+    "checkValue": {
+      "stuck_axis": "One axis stopped changing"
+    },
+    "powerValue": {
+      "ignition_off_hold": "Ignition off, unit kept on",
+      "low_battery": "Low battery",
+      "supply_lost": "Power supply lost"
+    }
+  },
+  "facts": {
+    "title": "Details",
+    "when": "When",
+    "vehicle": "Vehicle",
+    "unit": "Unit",
+    "where": "Where",
+    "speed": "Speed",
+    "fixAge": "GPS fix age",
+    "received": "Reached the app",
+    "lateNote": "The unit was offline, so this event arrived after it reconnected.",
+    "placeHidden": "The driver has not shared map position with you, so the place is hidden."
+  },
+  "map": {
+    "title": "Position",
+    "around": "Around this alert",
+    "locked": "The driver has not shared map position with you."
+  },
+  "follow": {
+    "title": "Follow-up",
+    "nobody": "Nobody has acknowledged this yet.",
+    "ackBy": "{{name}} acknowledged",
+    "acknowledge": "Acknowledge",
+    "youAcknowledged": "You acknowledged this",
+    "acknowledged": "Acknowledged",
+    "notes": "Notes",
+    "noNotes": "No notes yet.",
+    "addNote": "Add a note",
+    "saveNote": "Add note",
+    "noteHint": "Up to {{max}} characters.",
+    "noteEmpty": "Write a note first.",
+    "noteLong": "Keep the note under {{max}} characters.",
+    "noteAdded": "Note added",
+    "error": "That did not work. Please try again."
+  },
+  "csv": {
+    "button": "Export CSV",
+    "file": "alerto-events",
+    "done_one": "Exported {{count}} event",
+    "done_other": "Exported {{count}} events",
+    "yes": "Yes",
+    "no": "No",
+    "id": "Event ID",
+    "time": "Date and time",
+    "vehicle": "Vehicle",
+    "plate": "Plate",
+    "unit": "Unit",
+    "type": "Type",
+    "level": "Level",
+    "outcome": "Outcome",
+    "review": "Review",
+    "speed": "Speed (km/h)",
+    "fixAge": "GPS fix age (s)",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "closure": "Eye closure (s)",
+    "perclos": "PERCLOS (%)",
+    "yawns": "Yawns",
+    "peakG": "Peak force (g)",
+    "deltaV": "Change in speed (km/h)",
+    "tilt": "Tilt (degrees)",
+    "smsSent": "Messages sent",
+    "smsTotal": "Messages total",
+    "acknowledgedBy": "Acknowledged by",
+    "notes": "Notes",
+    "receivedLate": "Arrived late"
+  }
 }
