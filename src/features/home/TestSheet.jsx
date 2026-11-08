@@ -8,7 +8,7 @@ import { useStore } from '../../store/StoreProvider'
 import { selectContacts } from '../../store/selectors'
 
 // One test running inside the sheet: each step ticks, then the result is saved.
-function TestRun({ kind, vehicle, contacts, onDone }) {
+function TestRun({ kind, vehicle, contacts, contactId, onDone }) {
   const { t } = useTranslation(['home', 'setup'])
   const { actions } = useStore()
   const steps = kind === 'sms'
@@ -34,7 +34,7 @@ function TestRun({ kind, vehicle, contacts, onDone }) {
         await latency(400, 800)
         if (cancelled) return
       }
-      actions.recordUnitTest(vehicle.id, kind)
+      actions.recordUnitTest(vehicle.id, kind, contactId)
       setFinished(steps.length)
     })()
     return () => {
@@ -62,10 +62,11 @@ function TestRun({ kind, vehicle, contacts, onDone }) {
   )
 }
 
-export default function TestSheet({ kind, vehicle, onClose }) {
+// With `contactId`, the SMS test goes to that one contact.
+export default function TestSheet({ kind, vehicle, contactId = null, onClose }) {
   const { t } = useTranslation(['home', 'setup'])
   const { state } = useStore()
-  const contacts = vehicle ? selectContacts(state, vehicle.id) : []
+  const contacts = vehicle ? selectContacts(state, vehicle.id).filter((contact) => !contactId || contact.id === contactId) : []
   const open = Boolean(kind)
   const noContacts = kind === 'sms' && contacts.length === 0
 
@@ -77,7 +78,7 @@ export default function TestSheet({ kind, vehicle, onClose }) {
           <Link to={pathOf('people')} className="btn btn--primary btn--block" onClick={onClose}>{t('test.addContacts')}</Link>
         </div>
       )}
-      {open && !noContacts && <TestRun key={`${kind}-${vehicle.id}`} kind={kind} vehicle={vehicle} contacts={contacts} onDone={onClose} />}
+      {open && !noContacts && <TestRun key={`${kind}-${vehicle.id}-${contactId}`} kind={kind} vehicle={vehicle} contacts={contacts} contactId={contactId} onDone={onClose} />}
     </Sheet>
   )
 }
