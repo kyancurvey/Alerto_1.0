@@ -1,5 +1,210 @@
 {
   "title": "Vehicles",
-  "purpose": "Vehicles and their units",
-  "detail": "Unit health and settings for each vehicle."
+  "loading": "Loading vehicles",
+  "addVehicle": "Add vehicle",
+  "driver": "Driver",
+  "back": "Vehicles",
+  "empty": {
+    "title": "No vehicles yet",
+    "driver": "Add a vehicle and claim its unit to see it here.",
+    "family": "When a driver shares their jeepney with you, it will show up here."
+  },
+  "locked": {
+    "title": "Unit status is not shared",
+    "detail": "{{name}} has not shared unit status with you."
+  },
+  "presence": {
+    "online": "Online",
+    "parked": "Parked",
+    "offline": "Offline"
+  },
+  "card": {
+    "unit": "Unit {{id}}",
+    "firmware": "software {{version}}",
+    "notReporting": "Not reporting",
+    "needsAttention": "Needs attention",
+    "healthOk": "All checks passed",
+    "updateAvailable": "Update available",
+    "updating": "Updating",
+    "settingsPending": "Change waiting for unit",
+    "noContacts": "No emergency contacts"
+  },
+  "notFound": {
+    "title": "Vehicle not found",
+    "detail": "This vehicle does not exist, or it is not shared with you."
+  },
+  "noContacts": {
+    "title": "No emergency contacts yet",
+    "detail": "Nobody will get a text message if a crash is detected in this vehicle. Add at least one contact.",
+    "action": "Add contacts"
+  },
+  "health": {
+    "title": "Unit health",
+    "allOk": "All checks passed.",
+    "attention": "Some checks need attention.",
+    "updated": "Last updated",
+    "never": "Never",
+    "offlineNote": "The unit is not reporting. This is its last known status.",
+    "sensors": {
+      "label": "Motion and crash sensors",
+      "ok": "Working",
+      "fault": "Needs attention"
+    },
+    "camera": {
+      "label": "Camera",
+      "ok": "Working",
+      "fault": "Needs attention"
+    },
+    "modem": {
+      "label": "Modem and connection",
+      "ok": "Online, signal {{signal}} of 5",
+      "parked": "Parked, ignition off",
+      "fault": "Not reachable"
+    },
+    "battery": {
+      "label": "Battery",
+      "ok": "{{battery}}%",
+      "fault": "{{battery}}%, low"
+    },
+    "gps": {
+      "label": "GPS",
+      "ok": "Position found",
+      "fault": "No position"
+    }
+  },
+  "settings": {
+    "title": "Unit settings",
+    "pending": "Pending · version {{version}}",
+    "applied": "Applied · version {{version}}",
+    "waiting": "Waiting for the unit",
+    "waitingOffline": "Waiting for the unit. It is offline and will get the change when it is back online.",
+    "appliedAt": "Applied",
+    "sentToast": "Change sent. Waiting for the unit to apply version {{version}}.",
+    "appliedToast": "Settings applied to the unit (version {{version}})",
+    "countdown": "Crash countdown (seconds)",
+    "countdownHint": "How long the driver has to cancel before messages go out. Between {{min}} and {{max}} seconds.",
+    "volume": "Alarm volume",
+    "volumes": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    },
+    "language": "Alarm language",
+    "languageHint": "The language of the spoken alerts in the cab.",
+    "languages": {
+      "en": "English",
+      "fil": "Filipino"
+    },
+    "sensitivity": "Drowsiness sensitivity",
+    "sensitivityHint": "How easily the unit raises a drowsiness alert.",
+    "sensitivities": {
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High"
+    },
+    "holdDelay": "Stay on after ignition off",
+    "holdDelayHint": "How long the unit keeps running after the engine is switched off.",
+    "minutes": "{{count}} min",
+    "position": "Position reports",
+    "positionHint": "Share the jeepney's position on the map while it is moving.",
+    "save": "Save changes",
+    "undo": "Undo changes",
+    "errors": {
+      "countdownRange": "Enter a whole number between {{min}} and {{max}}.",
+      "failed": "Could not save the settings. Please try again."
+    }
+  },
+  "calibration": {
+    "title": "Mount calibration",
+    "detail": "Teaches the unit how it sits in the cab, so crash and tilt readings are right.",
+    "needed": "Not calibrated",
+    "done": "Calibrated",
+    "at": "Calibrated",
+    "start": "Calibrate",
+    "again": "Calibrate again",
+    "intro": "The unit measures how it is mounted in the cab. This takes a few seconds.",
+    "prepare1": "Park the jeepney on level ground.",
+    "prepare2": "Keep the cab still until the check is finished.",
+    "running": "In progress…",
+    "steps": {
+      "request": "Sending the request to your unit",
+      "measure": "The unit is measuring its position",
+      "save": "Saving the result"
+    },
+    "close": "Done",
+    "cancel": "Close",
+    "needClear": "Calibration is not available while an alert is active.",
+    "needOnline": "The unit must be online to calibrate it.",
+    "errors": {
+      "unitOffline": "The unit went offline. Try again when it is online.",
+      "alertActive": "An alert started. Try again when it has ended.",
+      "failed": "Calibration did not finish. Please try again."
+    }
+  },
+  "software": {
+    "title": "Software",
+    "upToDate": "Up to date",
+    "available": "Update available",
+    "updating": "Updating",
+    "version": "Version {{version}}",
+    "newer": "Version {{current}} is installed. Version {{latest}} is ready.",
+    "progress": "Update progress",
+    "stages": {
+      "download": "Downloading the update",
+      "install": "Installing version {{latest}}",
+      "restart": "Restarting the unit"
+    },
+    "update": "Update to {{latest}}",
+    "doneToast": "The unit now runs version {{version}}",
+    "blocked": {
+      "unitOffline": "The unit must be reachable to update it.",
+      "ignitionOn": "Park the jeepney and switch the ignition off to update.",
+      "alertActive": "Updates are not available while an alert is active."
+    },
+    "errors": {
+      "updating": "An update is already running.",
+      "upToDate": "The unit is already up to date.",
+      "unitOffline": "The unit must be reachable to update it.",
+      "ignitionOn": "Park the jeepney and switch the ignition off to update.",
+      "alertActive": "Updates are not available while an alert is active.",
+      "notAllowed": "You cannot update this unit.",
+      "failed": "The update could not start. Please try again."
+    }
+  },
+  "add": {
+    "title": "Add a vehicle",
+    "step": "Step {{current}} of {{total}}",
+    "name": "Vehicle name",
+    "nameHint": "A name you will recognise, like Jeep ni Mang Pedro",
+    "plate": "Plate number",
+    "plateHint": "For example: ABC 1234",
+    "route": "Route",
+    "routeHint": "For example: Batangas City – Rosario",
+    "next": "Next",
+    "unitIntro": "Enter the pairing code of the unit that goes in {{name}}, or scan its QR code.",
+    "code": "Pairing code",
+    "codeHint": "Printed on the unit and on its box. It looks like ALT-1A2-3BC.",
+    "scan": "Scan QR code",
+    "claim": "Add vehicle",
+    "back": "Back",
+    "checking": "Checking…",
+    "added": "{{name}} was added",
+    "linked": "Unit {{id}} is linked. Here is what it reports.",
+    "next2": "Next, add the people who should get a text if a crash is detected.",
+    "open": "Open vehicle",
+    "contacts": "Add contacts",
+    "errors": {
+      "nameRequired": "Enter a name for the vehicle.",
+      "plateRequired": "Enter the plate number.",
+      "plateInvalid": "That plate number does not look right. It has three letters and three or four numbers, like ABC 1234.",
+      "plateTaken": "A vehicle with this plate number is already registered.",
+      "routeRequired": "Enter the route.",
+      "codeRequired": "Enter the pairing code.",
+      "codeFormat": "That does not look like a pairing code. It looks like ALT-1A2-3BC.",
+      "unitNotFound": "We could not find a unit with that code. Check the code and try again.",
+      "unitClaimed": "This unit is already linked to an account. Check the code on your unit and try again.",
+      "notAllowed": "You cannot add vehicles.",
+      "failed": "The vehicle could not be added. Please try again."
+    }
+  }
 }

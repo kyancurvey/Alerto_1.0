@@ -1,7 +1,7 @@
 import { createRng } from './prng'
 import { ops, scenarios } from './scenarios'
 
-const QUICK_SPEED = 3
+export const QUICK_SPEED = 3
 const HEARTBEAT_MS = 5000
 
 // Runs scenario steps one after another. The run lives in the store (state.run), so it survives a reload:

@@ -1,5 +1,210 @@
 {
   "title": "Sasakyan",
-  "purpose": "Mga sasakyan at ang kanilang unit",
-  "detail": "Kalagayan ng unit at mga setting ng bawat sasakyan."
+  "loading": "Naglo-load ang mga sasakyan",
+  "addVehicle": "Magdagdag ng sasakyan",
+  "driver": "Driver",
+  "back": "Sasakyan",
+  "empty": {
+    "title": "Wala pang sasakyan",
+    "driver": "Magdagdag ng sasakyan at i-claim ang unit nito para lumabas dito.",
+    "family": "Kapag ibinahagi sa iyo ng isang driver ang jeepney niya, lalabas ito dito."
+  },
+  "locked": {
+    "title": "Hindi ibinabahagi ang lagay ng unit",
+    "detail": "Hindi pa ibinabahagi sa iyo ni {{name}} ang lagay ng unit."
+  },
+  "presence": {
+    "online": "Online",
+    "parked": "Naka-park",
+    "offline": "Offline"
+  },
+  "card": {
+    "unit": "Unit {{id}}",
+    "firmware": "software {{version}}",
+    "notReporting": "Walang ulat",
+    "needsAttention": "Kailangang ayusin",
+    "healthOk": "Pasado ang lahat ng pagsusuri",
+    "updateAvailable": "May bagong update",
+    "updating": "Nag-a-update",
+    "settingsPending": "Naghihintay sa unit ang pagbabago",
+    "noContacts": "Walang contact sa emergency"
+  },
+  "notFound": {
+    "title": "Hindi nahanap ang sasakyan",
+    "detail": "Walang ganitong sasakyan, o hindi ito ibinabahagi sa iyo."
+  },
+  "noContacts": {
+    "title": "Wala pang contact sa emergency",
+    "detail": "Walang makakatanggap ng text kung may nakitang aksidente sa sasakyang ito. Magdagdag ng kahit isang contact.",
+    "action": "Magdagdag ng contact"
+  },
+  "health": {
+    "title": "Kalagayan ng unit",
+    "allOk": "Pasado ang lahat ng pagsusuri.",
+    "attention": "May mga kailangang ayusin.",
+    "updated": "Huling na-update",
+    "never": "Wala pa",
+    "offlineNote": "Walang ulat ang unit. Ito ang huling alam na lagay nito.",
+    "sensors": {
+      "label": "Mga sensor sa galaw at banggaan",
+      "ok": "Gumagana",
+      "fault": "Kailangang ayusin"
+    },
+    "camera": {
+      "label": "Camera",
+      "ok": "Gumagana",
+      "fault": "Kailangang ayusin"
+    },
+    "modem": {
+      "label": "Modem at koneksyon",
+      "ok": "Online, signal {{signal}} sa 5",
+      "parked": "Naka-park, patay ang makina",
+      "fault": "Hindi maabot"
+    },
+    "battery": {
+      "label": "Baterya",
+      "ok": "{{battery}}%",
+      "fault": "{{battery}}%, mahina"
+    },
+    "gps": {
+      "label": "GPS",
+      "ok": "Nahanap ang lokasyon",
+      "fault": "Walang lokasyon"
+    }
+  },
+  "settings": {
+    "title": "Mga setting ng unit",
+    "pending": "Naghihintay · bersyon {{version}}",
+    "applied": "Nailapat na · bersyon {{version}}",
+    "waiting": "Naghihintay sa unit",
+    "waitingOffline": "Naghihintay sa unit. Offline ito at matatanggap ang pagbabago kapag online na ulit.",
+    "appliedAt": "Nailapat",
+    "sentToast": "Naipadala ang pagbabago. Hinihintay ang unit na ilapat ang bersyon {{version}}.",
+    "appliedToast": "Nailapat na sa unit ang mga setting (bersyon {{version}})",
+    "countdown": "Countdown sa aksidente (segundo)",
+    "countdownHint": "Gaano katagal makakapag-kansela ang driver bago ipadala ang mga mensahe. Mula {{min}} hanggang {{max}} segundo.",
+    "volume": "Lakas ng alarm",
+    "volumes": {
+      "low": "Mahina",
+      "medium": "Katamtaman",
+      "high": "Malakas"
+    },
+    "language": "Wika ng alarm",
+    "languageHint": "Ang wika ng mga babala na maririnig sa loob ng jeepney.",
+    "languages": {
+      "en": "English",
+      "fil": "Filipino"
+    },
+    "sensitivity": "Bilis ng pagtukoy sa antok",
+    "sensitivityHint": "Gaano kadaling magbigay ng babala ang unit kapag inaantok ang driver.",
+    "sensitivities": {
+      "low": "Mababa",
+      "normal": "Karaniwan",
+      "high": "Mataas"
+    },
+    "holdDelay": "Gaano katagal bukas pagkatapos patayin ang makina",
+    "holdDelayHint": "Gaano katagal gagana ang unit pagkatapos patayin ang makina.",
+    "minutes": "{{count}} min",
+    "position": "Ulat ng lokasyon",
+    "positionHint": "Ibahagi ang lokasyon ng jeepney sa mapa habang umaandar ito.",
+    "save": "I-save ang mga pagbabago",
+    "undo": "Ibalik ang dati",
+    "errors": {
+      "countdownRange": "Maglagay ng buong numero mula {{min}} hanggang {{max}}.",
+      "failed": "Hindi na-save ang mga setting. Pakisubukan ulit."
+    }
+  },
+  "calibration": {
+    "title": "Calibration ng pagkakabit",
+    "detail": "Tinuturuan nito ang unit kung paano ito nakakabit sa loob ng jeepney, para tama ang mga basa sa banggaan at pagkiling.",
+    "needed": "Hindi pa na-calibrate",
+    "done": "Na-calibrate na",
+    "at": "Na-calibrate",
+    "start": "I-calibrate",
+    "again": "I-calibrate ulit",
+    "intro": "Sinusukat ng unit kung paano ito nakakabit sa loob ng jeepney. Ilang segundo lang ito.",
+    "prepare1": "I-park ang jeepney sa patag na lugar.",
+    "prepare2": "Huwag gumalaw sa loob hanggang matapos ang pagsusuri.",
+    "running": "Isinasagawa…",
+    "steps": {
+      "request": "Ipinapadala ang hiling sa unit mo",
+      "measure": "Sinusukat ng unit ang pagkakabit nito",
+      "save": "Sine-save ang resulta"
+    },
+    "close": "Tapos na",
+    "cancel": "Isara",
+    "needClear": "Hindi puwede ang calibration habang may aktibong babala.",
+    "needOnline": "Dapat online ang unit para ma-calibrate ito.",
+    "errors": {
+      "unitOffline": "Nawalan ng koneksyon ang unit. Subukan ulit kapag online na ito.",
+      "alertActive": "May nagsimulang babala. Subukan ulit kapag tapos na ito.",
+      "failed": "Hindi natapos ang calibration. Pakisubukan ulit."
+    }
+  },
+  "software": {
+    "title": "Software",
+    "upToDate": "Pinakabago na",
+    "available": "May bagong update",
+    "updating": "Nag-a-update",
+    "version": "Bersyon {{version}}",
+    "newer": "Bersyon {{current}} ang naka-install. Handa na ang bersyon {{latest}}.",
+    "progress": "Takbo ng update",
+    "stages": {
+      "download": "Dina-download ang update",
+      "install": "Ini-install ang bersyon {{latest}}",
+      "restart": "Ni-re-restart ang unit"
+    },
+    "update": "I-update sa {{latest}}",
+    "doneToast": "Bersyon {{version}} na ang gamit ng unit",
+    "blocked": {
+      "unitOffline": "Dapat maabot ang unit para ma-update ito.",
+      "ignitionOn": "I-park ang jeepney at patayin ang makina para mag-update.",
+      "alertActive": "Hindi puwede ang update habang may aktibong babala."
+    },
+    "errors": {
+      "updating": "Nag-a-update na ang unit.",
+      "upToDate": "Pinakabago na ang unit.",
+      "unitOffline": "Dapat maabot ang unit para ma-update ito.",
+      "ignitionOn": "I-park ang jeepney at patayin ang makina para mag-update.",
+      "alertActive": "Hindi puwede ang update habang may aktibong babala.",
+      "notAllowed": "Hindi mo puwedeng i-update ang unit na ito.",
+      "failed": "Hindi nagsimula ang update. Pakisubukan ulit."
+    }
+  },
+  "add": {
+    "title": "Magdagdag ng sasakyan",
+    "step": "Hakbang {{current}} sa {{total}}",
+    "name": "Pangalan ng sasakyan",
+    "nameHint": "Pangalang madali mong makikilala, tulad ng Jeep ni Mang Pedro",
+    "plate": "Plate number",
+    "plateHint": "Halimbawa: ABC 1234",
+    "route": "Ruta",
+    "routeHint": "Halimbawa: Batangas City – Rosario",
+    "next": "Susunod",
+    "unitIntro": "Ilagay ang pairing code ng unit na ikakabit sa {{name}}, o i-scan ang QR code nito.",
+    "code": "Pairing code",
+    "codeHint": "Nakasulat ito sa unit at sa kahon nito. Ganito ang itsura: ALT-1A2-3BC.",
+    "scan": "I-scan ang QR code",
+    "claim": "Idagdag ang sasakyan",
+    "back": "Bumalik",
+    "checking": "Sinusuri…",
+    "added": "Naidagdag na ang {{name}}",
+    "linked": "Naka-link na ang unit {{id}}. Ito ang iniulat nito.",
+    "next2": "Susunod, idagdag ang mga taong dapat makatanggap ng text kung may nakitang aksidente.",
+    "open": "Buksan ang sasakyan",
+    "contacts": "Magdagdag ng contact",
+    "errors": {
+      "nameRequired": "Maglagay ng pangalan para sa sasakyan.",
+      "plateRequired": "Ilagay ang plate number.",
+      "plateInvalid": "Mali ang plate number. Tatlong letra at tatlo o apat na numero ito, tulad ng ABC 1234.",
+      "plateTaken": "May nakarehistro nang sasakyan na may ganitong plate number.",
+      "routeRequired": "Ilagay ang ruta.",
+      "codeRequired": "Ilagay ang pairing code.",
+      "codeFormat": "Hindi ito mukhang pairing code. Ganito ang itsura: ALT-1A2-3BC.",
+      "unitNotFound": "Walang unit na may ganitong code. Pakisuri ang code at subukan ulit.",
+      "unitClaimed": "Naka-link na ang unit na ito sa isang account. Pakisuri ang code sa unit at subukan ulit.",
+      "notAllowed": "Hindi ka puwedeng magdagdag ng sasakyan.",
+      "failed": "Hindi naidagdag ang sasakyan. Pakisubukan ulit."
+    }
+  }
 }
