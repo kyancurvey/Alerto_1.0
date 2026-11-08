@@ -9,6 +9,8 @@ import EventsPage from './features/events/EventsPage'
 import EventDetailPage from './features/events/EventDetailPage'
 import MapPage from './features/map/MapPage'
 import VehiclesPage from './features/vehicles/VehiclesPage'
+import AddVehiclePage from './features/vehicles/AddVehiclePage'
+import VehicleDetailPage from './features/vehicles/VehicleDetailPage'
 import MorePage from './features/more/MorePage'
 import PeoplePage from './features/people/PeoplePage'
 import ReportsPage from './features/reports/ReportsPage'
@@ -42,6 +44,8 @@ export default function App() {
                 <Route path={`${nav.events.to}/:eventId`} element={<EventDetailPage />} />
                 <Route path={nav.map.to} element={<MapPage />} />
                 <Route path={nav.vehicles.to} element={<VehiclesPage />} />
+                <Route path={`${nav.vehicles.to}/new`} element={<AddVehiclePage />} />
+                <Route path={`${nav.vehicles.to}/:vehicleId`} element={<VehicleDetailPage />} />
                 <Route path={nav.more.to} element={<MorePage />} />
                 <Route path={nav.people.to} element={<PeoplePage />} />
                 <Route path={nav.reports.to} element={<ReportsPage />} />
